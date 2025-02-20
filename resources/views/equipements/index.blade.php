@@ -17,14 +17,21 @@
                 <a href="{{ route('maintenances.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>⚙️</span> <span>Gestion des maintenances</span>
                 </a>
-                <a href="{{ route('statistiques.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                {{-- <a href="{{ route('statistiques.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>📊</span> <span>Gestion des statistiques</span>
+                </a> --}}
+                <a href="{{ route('historiques.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>📜</span> <span>Gestion de l'historique</span>
                 </a>
+
                 <a href="{{ route('rapports.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>📑</span> <span>Gestion des rapports</span>
-                </a>
+                {{-- </a>
                 <a href="{{ route('utilisateurs.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>👥</span> <span>Gestion des utilisateurs</span>
+                </a> --}}
+                <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>🧑‍💼</span> <span>Gestion des employés</span>
                 </a>
             </nav>
         </aside>
@@ -40,7 +47,8 @@
                 <table class="w-full overflow-hidden bg-white rounded-lg shadow-md table-auto">
                     <thead>
                         <tr class="text-white bg-blue-900">
-                            <th class="px-4 py-2 border">Nom</th>
+                        </th>
+                             <th class="px-4 py-2 border">Nom</th>
                             <th class="px-4 py-2 border">Type</th>
                             <th class="px-4 py-2 border">Date d'achat</th>
                             <th class="px-4 py-2 border">Caractéristiques</th>

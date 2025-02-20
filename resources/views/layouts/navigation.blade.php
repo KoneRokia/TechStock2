@@ -8,7 +8,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <div class="flex justify-between h-16">
-                        <div class=""><img src="/build/assets/logoilimiGroup.png" alt="Logo" class="w-12 h-12" style="width: 130px; heith:130px; margin-right:190px;  margin-top:37px"></div>
+                        <div class=""><img src="/build/assets/logoilimiGroup.png" alt="Logo"  style="width: 130px; heith:90px; margin-right:190px;  margin-top:37px"></div>
                         <div class="flex">
 
                             <div class="flex items-center space-x-4">

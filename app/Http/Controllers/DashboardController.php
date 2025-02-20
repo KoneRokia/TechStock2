@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
- 
+
 use App\Models\Equipement;
-use App\Models\User;
+use App\Models\Employe;
 use App\Models\Maintenance;
 use App\Models\Rapport;
 
@@ -11,8 +11,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // Total utilisateurs
-        $totalUsers = User::count();
+        // Total employés
+        $totalEmployes = Employe::count();
 
         // Total équipements
         $totalEquipements = Equipement::count();
@@ -32,7 +32,7 @@ class DashboardController extends Controller
 
         // Passer les données à la vue
         return view('dashboard', [
-            'totalUsers' => $totalUsers,
+            'totalEmployes' => $totalEmployes,
             'totalEquipements' => $totalEquipements,
             'equipementsActifs' => $equipementsActifs,
             'equipementsEnPanne' => $equipementsEnPanne,

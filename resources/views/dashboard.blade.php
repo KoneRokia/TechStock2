@@ -28,14 +28,21 @@
                 <a href="{{ route('maintenances.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>⚙️</span> <span>Gestion des maintenances</span>
                 </a>
-                <a href="{{ route('statistiques.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                {{-- <a href="{{ route('statistiques.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>📊</span> <span>Gestion des statistiques</span>
+                </a> --}}
+                <a href="{{ route('historiques.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>📜</span> <span>Gestion de l'historique</span>
                 </a>
+
                 <a href="{{ route('rapports.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>📑</span> <span>Gestion des rapports</span>
-                </a>
+                {{-- </a>
                 <a href="{{ route('utilisateurs.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>👥</span> <span>Gestion des utilisateurs</span>
+                </a> --}}
+                <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>🧑‍💼</span> <span>Gestion des employés</span>
                 </a>
             </nav>
         </aside>
@@ -44,8 +51,8 @@
         <main class="flex-1 p-10 bg-gray-100">
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 <div class="p-6 bg-white rounded-lg shadow-md">
-                    <h3 class="text-lg font-semibold text-gray-700"><i class="text-blue-500 fas fa-user"></i> Total Utilisateurs</h3>
-                    <p class="text-3xl font-bold text-blue-500">{{ $totalUsers }}</p>
+                    <h3 class="text-lg font-semibold text-gray-700"><i class="text-blue-500 fas fa-user"></i> Total Employés</h3>
+                    <p class="text-3xl font-bold text-blue-500">{{ $totalEmployes }}</p>
                 </div>
                 <div class="p-6 bg-white rounded-lg shadow-md">
                     <h3 class="text-lg font-semibold text-gray-700"><i class="text-blue-500 fas fa-server "></i> Total Équipements</h3>

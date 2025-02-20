@@ -35,13 +35,16 @@ class EquipementController extends Controller
         'cout' => 'required|string|max:255',
         'etat' => 'required|in:actif,en panne,hors service',
         'date_achat' => 'required|date',
-        // 'user_id' => 'required|exists:users,id',
+        'user_id' => 'required|exists:users,id',
         'nom_utilisateur' => 'required|string|max:255',
         'numero_serie' => 'required|string|unique:equipements,numero_serie',
         'marque' => 'required|string|max:255',
         'caracteristique' => 'required|string',
         'photo_equip' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+
         ]);
+        // dd($request->all());
+
 
         // Gestion de l'upload de la photo
          if ($request->hasFile('photo_equip')) {
@@ -59,7 +62,7 @@ class EquipementController extends Controller
             'cout' => $request->cout,
             'etat' => $request->etat,
             'date_achat' => $request->date_achat,
-            // 'user_id' => $request->user_id,
+            'user_id' => $request->user_id,
             'nom_utilisateur' => $request->nom_utilisateur,
             'numero_serie' => $request->numero_serie,
             'marque' => $request->marque,

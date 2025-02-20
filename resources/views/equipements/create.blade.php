@@ -14,18 +14,24 @@
                 <a href="{{ route('maintenances.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>⚙️</span> <span>Gestion des maintenances</span>
                 </a>
-                <a href="{{ route('statistiques.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                {{-- <a href="{{ route('statistiques.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>📊</span> <span>Gestion des statistiques</span>
+                </a> --}}
+                <a href="{{ route('historiques.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>📜</span> <span>Gestion de l'historique</span>
                 </a>
+
                 <a href="{{ route('rapports.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>📑</span> <span>Gestion des rapports</span>
-                </a>
+                {{-- </a>
                 <a href="{{ route('utilisateurs.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>👥</span> <span>Gestion des utilisateurs</span>
+                </a> --}}
+                <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>🧑‍💼</span> <span>Gestion des employés</span>
                 </a>
             </nav>
         </aside>
-
         <!-- Main Content -->
         <main class="flex-1 p-10 bg-gray-100" >
             <!-- Ajouter un équipement Section -->
@@ -74,15 +80,15 @@
                         <input type="date" name="date_achat" id="date_achat" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                     </div>
 
-                    {{-- <div class="mb-4">
-                        <label for="user_id" class="block text-2xl font-medium text-white">Utilisateur affecté</label>
+                    <div class="mb-4">
+                        <label for="user_id" class="block text-2xl font-medium text-black">Utilisateur </label>
                         <select name="user_id" id="user_id" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                             <option value="" disabled selected>Choisir un utilisateur</option>
                             @foreach($users as $user)
                                 <option value="{{ $user->id }}">{{ $user->name }}</option>
                             @endforeach
                         </select>
-                    </div> --}}
+                    </div>
 
 
                     <div class="mb-4">
@@ -111,6 +117,16 @@
                 </form>
                 </div>
             </div>
+
+                   @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </main>
     </div>
 

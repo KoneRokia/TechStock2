@@ -18,13 +18,13 @@ return new class extends Migration
             $table->string('cout')->nullable(false);
             $table->enum('etat', ['actif', 'en panne', 'hors service'])->nullable(false);
             $table->date('date_achat')->nullable(false);
-            // $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->nullable(false);
             $table->string('nom_utilisateur')->nullable();
             $table->string('numero_serie')->unique();
             $table->string('marque')->nullable(false);
             $table->text('caracteristique')->nullable(false);
             $table->string('photo_equip')->nullable();
             $table->integer('totalEquipements')->nullable();
+             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->nullable(false);
             $table->timestamps();
         });
     }
