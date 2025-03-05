@@ -11,6 +11,9 @@ use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\RapportController;
 use App\Http\Controllers\HistoriqueController;
+use App\Http\Controllers\LogicielController;
+use App\Http\Controllers\LicenceController;
+use App\Http\Controllers\NotificationController;
 
 
 /*
@@ -38,14 +41,11 @@ Route::post('/equipements', [EquipementController::class, 'store'])->name('equip
 Route::get('/equipements/{equipement}/edit', [EquipementController::class, 'edit'])->name('equipements.edit'); // Formulaire d'édition
 Route::put('/equipements/{equipement}', [EquipementController::class, 'update'])->name('equipements.update'); // Mise à jour de l'équipement
 Route::delete('/equipements/{equipement}', [EquipementController::class, 'destroy'])->name('equipements.destroy'); // Suppression de l'équipement
+Route::get('/equipements/{equipement}', [EquipementController::class, 'show'])->name('equipements.show');
 
 
-Route::get('/maintenances', [MaintenanceController::class, 'index'])->name('maintenances.index');
-Route::get('/maintenances/create', [MaintenanceController::class, 'create'])->name('maintenances.create'); // Formulaire de création
-Route::post('/maintenances', [MaintenanceController::class, 'store'])->name('maintenances.store'); // Enregistrement de l'équipement
-Route::get('/maintenances/{/maintenance}/edit', [MaintenanceController::class, 'edit'])->name('maintenances.edit'); // Formulaire d'édition
-Route::put('/maintenances/{/maintenance}', [MaintenanceController::class, 'update'])->name('maintenances.update'); // Mise à jour de l'équipement
-Route::delete('/maintenances/{/maintenance}', [MaintenanceController::class, 'destroy'])->name('maintenances.destroy'); // Suppression de l'équipement
+
+Route::resource('maintenances', MaintenanceController::class);
 
 
 Route::get('/employes', [EmployeController::class, 'index'])->name('employes.index');
@@ -56,19 +56,43 @@ Route::get('/employes/{employe}/edit', [EmployeController::class, 'edit'])->name
 Route::put('/employes/{employe}', [EmployeController::class, 'update'])->name('employes.update');
 Route::delete('/employes/{employe}', [EmployeController::class, 'destroy'])->name('employes.destroy');
 
+
 Route::get('/employes/{employe}/affectation', [EmployeController::class, 'showAffectationForm'])
     ->name('employes.affectation');
 Route::post('/employes/{employe}/affecter-equipements', [EmployeController::class, 'affecterEquipements'])
     ->name('employes.affecter-equipements');
 
+
 Route::middleware(['auth'])->group(function () {
     Route::resource('rapports', RapportController::class);
 });
 Route::get('/rapports/export/pdf', [RapportController::class, 'exportPDF'])->name('rapports.export.pdf');
-
+Route::get('/rapports/{rapport}', [RapportController::class, 'show'])->name('rapports.show');
 
 
 Route::get('/historiques', [HistoriqueController::class, 'index'])->name('historiques.index');
+
+Route::resource('logiciels', LogicielController::class);
+
+// Route::get('/logicielss', [EmployeController::class, 'index'])->name('logiciels.index');
+// Route::get('/logiciels/create', [EmployeController::class, 'create'])->name('logiciels.create');
+// Route::post('/logiciels', [EmployeController::class, 'store'])->name('logiciels.store');
+// Route::get('/logiciels/{logiciel}', [EmployeController::class, 'show'])->name('logiciels.show');
+// Route::get('/logiciels/{logiciel}/edit', [EmployeController::class, 'edit'])->name('logiciels.edit');
+// Route::put('/logiciels/{logiciel}', [EmployeController::class, 'update'])->name('logiciels.update');
+// Route::delete('/logiciels/{logiciel}', [EmployeController::class, 'destroy'])->name('logiciels.destroy');
+
+
+
+Route::resource('licences', LicenceController::class);
+Route::get('/licences/check-expiration', [LicenceController::class, 'checkLicencesExpiringSoon']);
+
+
+Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+Route::get('/notifications', [NotificationController::class, 'showNotifications'])->name('notifications.index');
+Route::get('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+
+
 
 
 

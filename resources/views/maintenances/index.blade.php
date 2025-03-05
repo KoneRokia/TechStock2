@@ -33,6 +33,13 @@
             <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                 <span>🧑‍💼</span> <span>Gestion des employés</span>
             </a>
+            <a href="{{ route('logiciels.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                <span>🖥️</span> <span>Gestion des logiciels</span>
+            </a>
+
+            <a href="{{ route('licences.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                <span>🔑</span> <span>Gestion des licences</span>
+            </a>
         </nav>
     </aside>
 
@@ -67,12 +74,36 @@
                         <td>{{ $maintenance->user->name ?? 'N/A' }}</td>
                         <td>{{ $maintenance->equipement->nom ?? 'N/A' }}</td>
                         <td>
-                            <a href="{{ route('maintenances.edit', $maintenance->id) }}" class="text-blue-500">✏️</a>
-                            <form action="{{ route('maintenances.destroy', $maintenance->id) }}" method="POST" class="inline">
-                                @csrf @method('DELETE')
-                                <button type="submit" class="text-red-500">🗑️</button>
+
+                            <a href="{{ route('maintenances.show', $maintenance) }}" class="text-green-500">👁️</a>
+
+
+                            <!-- Bouton Modifier pour tous les utilisateurs -->
+                            <a href="{{ route('maintenances.edit', $maintenance->id) }}"
+                               class="text-blue-500"
+                               @if(auth()->user()->role !== 'admin' && auth()->user()->role !== 'editeur')
+                                   onclick="event.preventDefault(); alert('Seuls l\'admin et l\'éditeur peuvent modifier.');"
+                               @endif>
+                                ✏️
+                            </a>
+
+                            <!-- Bouton Supprimer pour tous les utilisateurs -->
+                            <form action="{{ route('maintenances.destroy', $maintenance->id) }}" method="POST" class="inline" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet équipement ?')" style="display:inline;">
+                                @csrf
+                                @csrf
+                                @method('DELETE')
+
+                                <!-- Si l'utilisateur n'est pas admin, le bouton est désactivé avec un message d'alerte -->
+                                <button type="submit"
+                                        class="text-red-500"
+                                        @if(auth()->user()->role !== 'admin')
+                                            onclick="event.preventDefault(); alert('Seul l\'admin peut supprimer.');"
+                                        @endif>
+                                    🗑️
+                                </button>
                             </form>
                         </td>
+
                     </tr>
                     @endforeach
                 </tbody>

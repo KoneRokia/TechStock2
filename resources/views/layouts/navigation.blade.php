@@ -14,10 +14,17 @@
                             <div class="flex items-center space-x-4">
                             <div class=""><h1 class="text-lg font-bold text-black" style="margin-right:600px; margin-top:60px; font-size:20px" >TABLEAU DE BORD</h1></div>
 
-                            <div class="flex items-center space-x-2 bg-gray-100 rounded-lg shadow-md" style="margin-left:250px; padding-top:10px;   margin-top:60px">
+                                <!-- Exemple avec une icône de notification (utilisant Font Awesome) -->
+            <li class="nav-item" style="margin-top:60px;">
+                <a class="nav-link" href="{{ route('notifications.index') }}">
+                    <i class="fa fa-bell"></i>
+                    <span class="ms-2">Notifications</span>
+                    <span class="badge badge-danger">
+                        {{ auth()->user()->unreadNotifications->count() }}
+                    </span>
+                </a>
+            </li>
 
-                                <span class="text-lg font-semibold text-black">Notifications 🔔</span>
-                            </div>
 
 
                 </div>

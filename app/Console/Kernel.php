@@ -13,6 +13,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->command('licences:check-expiration')->daily();
+
+        $schedule->call(function () {
+            app()->make(\App\Http\Controllers\LicenceController::class)->checkLicencesExpiringSoon();
+        })->daily();
+
     }
 
     /**
@@ -24,4 +30,6 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
+
+
 }

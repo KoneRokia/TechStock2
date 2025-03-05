@@ -7,6 +7,7 @@ use App\Models\Employe;
 use App\Models\Equipement;
 use App\Models\User;
 use App\Models\Historique;
+use Illuminate\Support\Facades\Auth;
 
 class EmployeController extends Controller
 {
@@ -29,11 +30,12 @@ class EmployeController extends Controller
     public function create()
 {
     $equipements = Equipement::all(); // Récupère tous les équipements
-    $users = User::all(); // Récupérer tous les utilisateurs
+    // $users = User::all(); // Récupérer tous les utilisateurs
+    $employes = Employe::all();
 
-    return view('employes.create', compact('equipements', 'users'));
+    return view('employes.create', compact('equipements', 'employes'));
 }
-
+// compact('equipements', 'users'));
     /**
      * Enregistre un nouvel employé.
      */
@@ -46,7 +48,7 @@ class EmployeController extends Controller
             'prenom' => 'required|string|max:255',
             'poste' => 'required|string|max:255',
             'date_embauche' => 'required|date',
-            'user_id' => 'required|exists:users,id',
+            // 'user_id' => 'required|exists:users,id',
             'equipement_id' => 'array', // Optionnel et doit être un tableau
             'equipement_id.*' => 'exists:equipements,id' // Chaque ID doit exister dans la table `equipements`
         ]);
@@ -93,6 +95,7 @@ class EmployeController extends Controller
             // Enregistrement dans l'historique
             Historique::create([
                 'equipement_id' => $equipement_id,
+                'numero_serie' => $equipement->numero_serie,
                 'ancien_utilisateur_id' => $ancien_utilisateur_id,
                 'nouveau_utilisateur_id' => $employe->id,
                 'date_passation' => now(),
@@ -111,7 +114,76 @@ class EmployeController extends Controller
         $equipements = Equipement::all();
         return view('employes.affectation', compact('employe', 'equipements'));
     }
+        //suppression
 
+    public function edit($id)
+    {
+        // Trouve l'employé par son ID
+        $employe = Employe::findOrFail($id);
+
+        // Renvoie la vue d'édition avec l'employé à modifier
+        return view('employes.edit', compact('employe'));
+    }
+
+
+
+    public function update(Request $request, $id)
+    {
+        // Valider les données reçues
+        $request->validate([
+            'nom' => 'required|string|max:255',
+            'prenom' => 'required|string|max:255',
+            'email' => 'required|email|unique:employes,email,' . $id,
+            'telephone' => 'nullable|string|max:20',
+            'poste' => 'nullable|string|max:255',
+            'date_embauche' => 'required|date',
+        ]);
+
+        // Trouver l'employé par ID
+        $employe = Employe::findOrFail($id);
+
+        // Mettre à jour les informations de l'employé
+        $employe->update([
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'email' => $request->email,
+            'telephone' => $request->telephone,
+            'poste' => $request->poste,
+            'date_embauche' => $request->date_embauche,
+        ]);
+
+        // Rediriger avec un message de succès
+        return redirect()->route('employes.index')->with('success', 'Employé mis à jour avec succès.');
+    }
+
+    public function destroy($id)
+    {
+        $employe = Employe::findOrFail($id);  // Trouver l'employé par son ID
+        $employe->delete();  // Supprimer l'employé
+
+        return redirect()->route('employes.index')->with('success', 'Employé supprimé avec succès.');
+    }
+
+
+        // Afficher un rapport spécifique
+        public function show(Employe $employe)
+        {
+            return view('employes.show', compact('employe'));
+        }
+
+
+
+
+    // Supprimer manuellement les relations dans la table historique lorsque l'employé est supprimé
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function($employe) {
+            // Mettre à null la colonne 'nouveau_utilisateur_id' dans la table historique
+            $employe->historiquesNouveaux()->update(['nouveau_utilisateur_id' => null]);
+        });
+    }
 }
 
 

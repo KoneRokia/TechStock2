@@ -33,6 +33,13 @@
                 <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>🧑‍💼</span> <span>Gestion des employés</span>
                 </a>
+                <a href="{{ route('logiciels.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>🖥️</span> <span>Gestion des logiciels</span>
+                </a>
+
+                <a href="{{ route('licences.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>🔑</span> <span>Gestion des licences</span>
+                </a>
             </nav>
         </aside>
 
@@ -53,6 +60,7 @@
                             <th class="px-4 py-2 border">Date d'achat</th>
                             <th class="px-4 py-2 border">Caractéristiques</th>
                             <th class="px-4 py-2 border">Coût</th>
+                            {{-- <th class="px-4 py-2 border">Utilisateur</th> --}}
                             <th class="px-4 py-2 border">Photo</th>
                             <th class="px-4 py-2 border">Actions</th> <!-- Nouvelle colonne pour les actions -->
                         </tr>
@@ -65,18 +73,48 @@
                                 <td class="px-4 py-2 border">{{ $equipement->date_achat }}</td>
                                 <td class="px-4 py-2 border">{{ $equipement->caracteristique }}</td>
                                 <td class="px-4 py-2 border">{{ $equipement->cout }}</td>
+                                {{-- <td class="p-2 border">{{ $equipement->user->name }}</td> --}}
                                 <td class="px-4 py-2 border">
                                     <img src="{{ asset('storage/' . $equipement->photo_equip) }}" alt="Image de l'équipement" class="object-cover w-16 h-16 rounded">
                                 </td>
 
+
                                 <td class="px-4 py-2 text-center border">
-                                    <a href="{{ route('equipements.edit', $equipement->id) }}" class="text-blue-600 hover:text-blue-800" title="Modifier">
+
+                                    <a href="{{ route('equipements.show', $equipement) }}" class="text-green-500">👁️</a>
+
+
+                                    <!-- Bouton Modifier pour tous les utilisateurs -->
+                                    <a href="{{ route('equipements.edit', $equipement->id) }}"
+                                       class="text-blue-600 hover:text-blue-800"
+                                       title="Modifier"
+                                       @if(auth()->user()->role !== 'admin' && auth()->user()->role !== 'editeur')
+                                           onclick="event.preventDefault(); alert('Seuls l\'admin et l\'éditeur peuvent modifier cet équipement.');"
+                                       @endif>
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a href="{{ route('equipements.destroy', $equipement->id) }}" class="ml-4 text-red-600 hover:text-red-800" title="Supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet équipement ?')">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </a>
+
+                                    <!-- Formulaire Supprimer pour tous les utilisateurs -->
+                                    <form action="{{ route('equipements.destroy', $equipement->id) }}"
+                                          method="POST"
+                                          onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet équipement ?')"
+                                          style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <!-- Bouton Supprimer avec restriction de rôle -->
+                                        <button type="submit"
+                                                class="ml-4 text-red-600 hover:text-red-800"
+                                                title="Supprimer"
+                                                style="border: none; background: none;"
+                                                @if(auth()->user()->role !== 'admin')
+                                                    onclick="event.preventDefault(); alert('Seul l\'admin peut supprimer cet équipement.');"
+                                                @endif>
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
                                 </td>
+
                             </tr>
                         @endforeach
                     </tbody>

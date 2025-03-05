@@ -35,6 +35,36 @@ class ProfileController extends Controller
         $request->user()->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
+
+
+        // Règles de validation de base
+    $rules = [
+        'name'  => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255'],
+        // Ajoute d'autres règles si nécessaire
+    ];
+
+    // Si l'utilisateur connecté est admin, on valide le champ 'role'
+    if (auth()->user()->role === 'admin') {
+        $rules['role'] = ['required', 'string', 'max:255'];
+    }
+
+    $data = $request->validate($rules);
+
+    $user = auth()->user();
+
+    // Mise à jour des informations de base
+    $user->name  = $data['name'];
+    $user->email = $data['email'];
+
+    // Mise à jour du rôle uniquement si l'utilisateur connecté est admin
+    if (auth()->user()->role === 'admin' && isset($data['role'])) {
+        $user->role = $data['role'];
+    }
+
+    $user->save();
+
+    return back()->with('status', 'Profil mis à jour avec succès.');
     }
 
     /**
@@ -57,4 +87,5 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
 }

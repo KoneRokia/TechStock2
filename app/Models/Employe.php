@@ -30,4 +30,12 @@ class Employe extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+
+    public function logiciels()
+    {
+        return $this->belongsToMany(Logiciel::class, 'employe_logiciel', 'employe_id', 'logiciel_id');
+    }
+
+
 }

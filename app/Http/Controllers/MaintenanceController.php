@@ -7,6 +7,8 @@ use App\Models\Equipement;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+
+
 class MaintenanceController extends Controller
 {
     public function index()
@@ -37,12 +39,22 @@ class MaintenanceController extends Controller
         return redirect()->route('maintenances.index')->with('success', 'Maintenance ajoutée avec succès.');
     }
 
-    public function edit(Maintenance $maintenance)
+    public function edit($id)
     {
-        $equipements = Equipement::all();
-        $users = User::where('role', 'technicien')->get();
-        return view('maintenances.edit', compact('maintenance', 'equipements', 'users'));
+        $maintenance = Maintenance::findOrFail($id);
+        $users = User::where('role', 'technicien')->get(); // Récupérer tous les techniciens
+        $equipements = Equipement::all(); // Récupérer tous les équipements
+
+        return view('maintenances.edit', compact('maintenance', 'users', 'equipements'));
     }
+
+
+    // public function edit(Maintenance $maintenance)
+    // {
+    //     $equipements = Equipement::all();
+    //     $users = User::where('role', 'technicien')->get();
+    //     return view('maintenances.edit', compact('maintenance', 'equipements', 'users'));
+    // }
 
     public function update(Request $request, Maintenance $maintenance)
     {
@@ -59,10 +71,33 @@ class MaintenanceController extends Controller
         return redirect()->route('maintenances.index')->with('success', 'Maintenance mise à jour.');
     }
 
-    public function destroy(Maintenance $maintenance)
+    public function destroy($id)
+{
+    $maintenance = Maintenance::findOrFail($id);
+    $maintenance->delete();
+
+    return redirect()->route('maintenances.index')->with('success', 'Maintenance supprimée avec succès.');
+}
+
+
+
+
+         // Afficher un maintenance spécifique
+    public function show(Maintenance $maintenance)
     {
-        $maintenance->delete();
-        return redirect()->route('maintenances.index')->with('success', 'Maintenance supprimée.');
+        return view('maintenances.show', compact('maintenance'));
     }
+
+
+
+
+    // public function destroy(Maintenance $maintenance)
+    // {
+    //     $maintenance->delete();
+    //     return redirect()->route('maintenances.index')->with('success', 'Maintenance supprimée.');
+    // }
+
+
+
 }
 

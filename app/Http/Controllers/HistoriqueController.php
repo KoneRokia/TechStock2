@@ -9,7 +9,7 @@ class HistoriqueController extends Controller
 {
     public function index()
     {
-        $historiques = Historique::with(['equipement', 'ancienUtilisateur', 'nouveauUtilisateur'])->get();
+        $historiques = Historique::with(['equipement', 'ancienUtilisateur', 'nouveauUtilisateur', ])->get();
         return view('historiques.index', compact('historiques'));
     }
 

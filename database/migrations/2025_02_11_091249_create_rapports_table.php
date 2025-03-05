@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('titre');
             $table->date('date_generation');
             $table->text('description');
-            $table->string('fichier')->nullable(); // Stocker le fichier du rapport
+            // $table->string('fichier')->nullable(); // Stocker le fichier du rapport
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->nullable(false);
             $table->foreignId('equipement_id')->constrained('equipements')->onDelete('cascade')->nullable(false);
             $table->timestamps();

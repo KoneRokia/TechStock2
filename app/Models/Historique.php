@@ -11,6 +11,7 @@ class Historique extends Model
 
     protected $fillable = [
         'equipement_id',
+        'numero_serie',
         'ancien_utilisateur_id',
         'nouveau_utilisateur_id',
         'date_passation',
@@ -30,5 +31,21 @@ class Historique extends Model
     public function nouveauUtilisateur()
     {
         return $this->belongsTo(Employe::class, 'nouveau_utilisateur_id');
+
+
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($historique) {
+            $equipement = \App\Models\Equipement::find($historique->equipement_id);
+            if ($equipement) {
+                $historique->numero_serie = $equipement->numero_serie;
+            }
+        });
+    }
+
+
 }

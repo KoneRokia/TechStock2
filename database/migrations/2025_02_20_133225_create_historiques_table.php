@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('historiques', function (Blueprint $table) {
             $table->id();
             $table->foreignId('equipement_id')->constrained()->onDelete('cascade');
+            // $table->string('numero_serie')->nullable();
             $table->foreignId('ancien_utilisateur_id')->nullable()->constrained('employes')->onDelete('set null');
-            $table->foreignId('nouveau_utilisateur_id')->constrained('employes')->onDelete('cascade');
+            $table->foreignId('nouveau_utilisateur_id')->constrained('employes')->onDelete('set null');
             $table->date('date_passation')->default(now());
             $table->integer('temps_utilisation')->nullable(); // en jours
             $table->timestamps();

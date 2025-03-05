@@ -9,7 +9,7 @@ class Rapport extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['date_generation', 'fichier', 'user_id', 'equipement_id', 'type',
+    protected $fillable = ['date_generation',  'user_id', 'equipement_id', 'type',
     'titre', 'description'];
 
     // Relation avec l'utilisateur (créateur du rapport)
@@ -24,4 +24,5 @@ class Rapport extends Model
         return $this->belongsTo(Equipement::class);
     }
 }
+// 'fichier',
 

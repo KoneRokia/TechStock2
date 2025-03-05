@@ -35,14 +35,14 @@ class RapportController extends Controller
             'description' => 'required|string',
             'date_generation' => 'required|date',
             'equipement_id' => 'required|exists:equipements,id',
-            'fichier' => 'nullable|mimes:pdf,doc,docx,xlsx|max:2048'
+            // 'fichier' => 'nullable|mimes:pdf,doc,docx,xlsx|max:2048'
         ]);
 
 
-        $fichierPath = null;
-        if ($request->hasFile('fichier')) {
-            $fichierPath = $request->file('fichier')->store('rapports');
-        }
+        // $fichierPath = null;
+        // if ($request->hasFile('fichier')) {
+        //     $fichierPath = $request->file('fichier')->store('rapports');
+        // }
 
         Rapport::create([
             'type' => $request->type,
@@ -51,7 +51,7 @@ class RapportController extends Controller
         'date_generation' => $request->date_generation,
         'equipement_id' => $request->equipement_id,
         'user_id' => Auth::id(), // ID de l'utilisateur connecté
-        'fichier' => $fichierPath,
+        // 'fichier' => $fichierPath,
         ]);
 
         return redirect()->route('rapports.index')->with('success', 'Rapport ajouté avec succès.');
@@ -73,34 +73,24 @@ class RapportController extends Controller
 
     // Mettre à jour un rapport
     public function update(Request $request, Rapport $rapport)
-    {
-        $request->validate([
-            'type' => 'required|string|max:255',
+{
+    $request->validate([
         'titre' => 'required|string|max:255',
         'description' => 'required|string',
         'date_generation' => 'required|date',
         'equipement_id' => 'required|exists:equipements,id',
-        'fichier' => 'nullable|mimes:pdf,doc,docx,xlsx|max:2048'
-        ]);
+    ]);
 
-        if ($request->hasFile('fichier')) {
-            if ($rapport->fichier) {
-                Storage::delete($rapport->fichier);
-            }
-            $rapport->fichier = $request->file('fichier')->store('rapports');
-        }
+    $rapport->update([
+        'titre' => $request->titre,
+        'description' => $request->description,
+        'date_generation' => $request->date_generation,
+        'equipement_id' => $request->equipement_id,
+    ]);
 
-        $rapport->update([
-            'type' => $request->type,
-            'titre' => $request->titre,
-            'description' => $request->description,
-            'date_generation' => $request->date_generation,
-            'equipement_id' => $request->equipement_id,
-            'fichier' => $rapport->fichier,
-            ]);
+    return redirect()->route('rapports.index')->with('success', 'Rapport mis à jour avec succès.');
+}
 
-        return redirect()->route('rapports.index')->with('success', 'Rapport mis à jour avec succès.');
-    }
 
     //exportation du rapport
         public function exportPDF()
@@ -120,4 +110,7 @@ class RapportController extends Controller
 
         return redirect()->route('rapports.index')->with('success', 'Rapport supprimé avec succès.');
     }
+
+
+
 }

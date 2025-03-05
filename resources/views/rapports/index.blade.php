@@ -33,6 +33,13 @@
                 <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>🧑‍💼</span> <span>Gestion des employés</span>
                 </a>
+                <a href="{{ route('logiciels.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>🖥️</span> <span>Gestion des logiciels</span>
+                </a>
+
+                <a href="{{ route('licences.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>🔑</span> <span>Gestion des licences</span>
+                </a>
             </nav>
         </aside>
 
@@ -42,7 +49,7 @@
 
 <div class="container">
     <h1 class="mb-4 text-2xl font-bold">Gestion des rapports</h1> <br><br>
-    <a href="{{ route('rapports.create') }}" class="mb-3 btn btn-primary px-4 py-2 text-white bg-blue-500 rounded">Ajouter un rapport</a> <br><br>
+    <a href="{{ route('rapports.create') }}" class="px-4 py-2 mb-3 text-white bg-blue-500 rounded btn btn-primary">Ajouter un rapport</a> <br><br>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
@@ -50,16 +57,16 @@
 
     <table class="w-full border border-collapse border-gray-300 table-auto">
         <thead>
-            <tr class="bg-gray-200">
+            <tr class="text-white bg-blue-900">
                 <th class="p-2 border">Type</th>
                 <th class="p-2 border">Description</th>
                 <th class="p-2 border">Titre</th>
                 <th class="p-2 border">Date</th>
                 <th class="p-2 border">Nom</th>
                 <th class="p-2 border">Equipement</th>
-                <th class="p-2 border">Fichier</th>
                 <th class="p-2 border">Actions</th>
             </tr>
+            {{-- <th class="p-2 border">Fichier</th> --}}
         </thead>
         <tbody>
             @foreach($rapports as $rapport)
@@ -70,20 +77,41 @@
                  <td class="p-2 border">{{ $rapport->date_generation }}</td>
                  <td class="p-2 border">{{ $rapport->user->name }}</td> <!-- Nom de l'utilisateur -->
                   <td class="p-2 border">{{ $rapport->equipement->nom }}</td>
-                  <td class="p-2 border">
+                  {{-- <td class="p-2 border">
                     @if($rapport->fichier)
                         <a href="{{ Storage::url($rapport->fichier) }}" target="_blank" class="text-blue-500">📂 Voir</a>
+
                     @endif
-                </td>
+                </td> --}}
                 <td class="p-2 border">
+                    <!-- Bouton Voir (accessible à tous) -->
                     <a href="{{ route('rapports.show', $rapport) }}" class="text-green-500">👁️ Voir</a>
-                    <a href="{{ route('rapports.edit', $rapport) }}" class="text-yellow-500">✏️ Modifier</a>
-                    <form action="{{ route('rapports.destroy', $rapport) }}" method="POST" class="inline-block">
+
+                    <!-- Bouton Modifier avec restriction d'action -->
+                    <a href="{{ route('rapports.edit', $rapport) }}"
+                       class="text-yellow-500"
+                       @if(auth()->user()->role !== 'admin' && auth()->user()->role !== 'editeur')
+                           onclick="event.preventDefault(); alert('Seuls l\'admin et l\'éditeur peuvent modifier.');"
+                       @endif>
+                        ✏️ Modifier
+                    </a>
+
+                    <!-- Formulaire Supprimer avec restriction d'action -->
+                    <form action="{{ route('rapports.destroy', $rapport) }}" method="POST" class="inline-block" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce rapport ?')" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="text-red-500">🗑️ Supprimer</button>
-                                </form>
-                            </td>
+
+                        <!-- Bouton Supprimer avec restriction d'action -->
+                        <button type="submit"
+                                class="text-red-500"
+                                @if(auth()->user()->role !== 'admin')
+                                    onclick="event.preventDefault(); alert('Seul l\'admin peut supprimer.');"
+                                @endif>
+                            🗑️ Supprimer
+                        </button>
+                    </form>
+                </td>
+
                         </tr>
                         @endforeach
                     </tbody>

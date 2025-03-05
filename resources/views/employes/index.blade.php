@@ -34,6 +34,13 @@
                 <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>🧑‍💼</span> <span>Gestion des employés</span>
                 </a>
+                <a href="{{ route('logiciels.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>🖥️</span> <span>Gestion des logiciels</span>
+                </a>
+
+                <a href="{{ route('licences.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>🔑</span> <span>Gestion des licences</span>
+                </a>
             </nav>
         </aside>
 
@@ -54,6 +61,7 @@
                                 <th class="px-4 py-2 border">Prénom</th>
                                 <th class="px-4 py-2 border">Poste</th>
                                 <th class="px-4 py-2 border">Date d'embauche</th>
+                                {{-- <th class="px-4 py-2 border">Utilisateur</th> --}}
                                 <th class="px-4 py-2 border">Équipements</th>
                                 <th class="px-4 py-2 border">Action</th>
                                 <th class="px-4 py-2 border">Affectation</th>
@@ -66,22 +74,82 @@
                                     <td class="px-4 py-2 border">{{ $employe->prenom }}</td>
                                     <td class="px-4 py-2 border">{{ $employe->poste }}</td>
                                     <td class="px-4 py-2 border">{{ $employe->date_embauche }}</td>
+                                    {{-- <td class="p-2 border">{{ $employe->user->name }}</td> --}}
                                     <td class="px-4 py-2 border">
                                         @foreach($employe->equipements as $equipement)
                                             <span class="badge badge-primary">{{ $equipement->nom }}</span>
                                         @endforeach
+                                    </td>
 
-                                    <td class="px-4 py-2 text-center border">
-                                        <a href="{{ route('employes.edit', $employe->id) }}" class="text-blue-600 hover:text-blue-800" title="Modifier">
+
+                                    <td>
+                                        <a href="{{ route('employes.show', $employe) }}" class="text-green-500">👁️</a>
+
+
+                                        <!-- Bouton Modifier pour tous les utilisateurs -->
+                                        <a href="{{ route('employes.edit', $employe->id) }}"
+                                           class="text-blue-500"
+                                           @if(auth()->user()->role !== 'admin' && auth()->user()->role !== 'editeur')
+                                               onclick="event.preventDefault(); alert('Seuls l\'admin et l\'éditeur peuvent modifier.');"
+                                           @endif>
+                                            ✏️
+                                        </a>
+
+                                        <!-- Bouton Supprimer pour tous les utilisateurs -->
+                                        <form action="{{ route('employes.destroy', $employe->id) }}" method="POST" class="inline" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet équipement ?')" style="display:inline;">
+                                            @csrf
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <!-- Si l'utilisateur n'est pas admin, le bouton est désactivé avec un message d'alerte -->
+                                            <button type="submit"
+                                                    class="text-red-500"
+                                                    @if(auth()->user()->role !== 'admin')
+                                                        onclick="event.preventDefault(); alert('Seul l\'admin peut supprimer.');"
+                                                    @endif>
+                                                🗑️
+                                            </button>
+                                        </form>
+                                    </td>
+
+
+
+                                    {{-- <td class="px-4 py-2 text-center border">
+                                        <!-- Bouton Modifier pour tous les utilisateurs -->
+                                        <a href="{{ route('equipements.edit', $equipement->id) }}"
+                                           class="text-blue-600 hover:text-blue-800"
+                                           title="Modifier"
+                                           @if(auth()->user()->role !== 'admin' && auth()->user()->role !== 'editeur')
+                                               onclick="event.preventDefault(); alert('Seuls l\'admin et l\'éditeur peuvent modifier cet équipement.');"
+                                           @endif>
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="{{ route('employes.destroy', $employe->id) }}" class="ml-4 text-red-600 hover:text-red-800" title="Supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet employe ?')">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </a>
-                                    </td>
+
+
+                                        <!-- Formulaire Supprimer pour tous les utilisateurs -->
+                                        <form action="{{ route('employes.edit', $employe->id) }}"
+                                              method="POST"
+                                              onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet équipement ?')"
+                                              style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <!-- Bouton Supprimer avec restriction de rôle -->
+                                            <button type="submit"
+                                                    class="ml-4 text-red-600 hover:text-red-800"
+                                                    title="Supprimer"
+                                                    style="border: none; background: none;"
+                                                    @if(auth()->user()->role !== 'admin')
+                                                        onclick="event.preventDefault(); alert('Seul l\'admin peut supprimer cet équipement.');"
+                                                    @endif>
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </form>
+                                    </td> --}}
+
                                     <td class="px-4 py-2 border">
                                         <a href="{{ route('employes.affectation', $employe->id) }}"
-                                           class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">
+                                           class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-700">
                                             🏷️ Affecter un équipement
                                         </a>
                                     </td>

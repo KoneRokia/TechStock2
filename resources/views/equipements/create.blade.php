@@ -30,6 +30,13 @@
                 <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>🧑‍💼</span> <span>Gestion des employés</span>
                 </a>
+                <a href="{{ route('logiciels.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>🖥️</span> <span>Gestion des logiciels</span>
+                </a>
+
+                <a href="{{ route('licences.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>🔑</span> <span>Gestion des licences</span>
+                </a>
             </nav>
         </aside>
         <!-- Main Content -->
@@ -39,10 +46,10 @@
                 <h1 class="mb-4 text-3xl font-semibold">Ajouter un nouvel équipement</h1>
 
                 <!-- Formulaire d'ajout -->
-                <div class="p-4 rounded-lg" style="background-color:#babaf7">
+                <div class="p-4 rounded-lg" style="background-color:#f5f5f8">
 
 
-                <form action="{{ route('equipements.store') }}" method="POST" enctype="multipart/form-data"  >
+                <form action="{{ route('equipements.store') }}" method="POST" enctype="multipart/form-data"  class="bg-white p-6 rounded shadow-md" >
                     @csrf
 
                     <div class="mb-4" >
@@ -50,10 +57,10 @@
                         <input type="text" name="nom" id="nom" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                     </div>
 
-                    <div class="mb-4">
+                    {{-- <div class="mb-4">
                         <label for="nom_utilisateur" class="block text-2xl font-medium text-black">Utilisateur affecté</label>
                         <input type="text" name="nom_utilisateur" id="nom_utilisateur" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                    </div>
+                    </div> --}}
 
 
                     <div class="mb-4">
@@ -80,7 +87,7 @@
                         <input type="date" name="date_achat" id="date_achat" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                     </div>
 
-                    <div class="mb-4">
+                    {{-- <div class="mb-4">
                         <label for="user_id" class="block text-2xl font-medium text-black">Utilisateur </label>
                         <select name="user_id" id="user_id" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                             <option value="" disabled selected>Choisir un utilisateur</option>
@@ -88,7 +95,7 @@
                                 <option value="{{ $user->id }}">{{ $user->name }}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div> --}}
 
 
                     <div class="mb-4">

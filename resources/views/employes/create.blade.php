@@ -31,6 +31,13 @@
                 <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>🧑‍💼</span> <span>Gestion des employés</span>
                 </a>
+                <a href="{{ route('logiciels.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>🖥️</span> <span>Gestion des logiciels</span>
+                </a>
+
+                <a href="{{ route('licences.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>🔑</span> <span>Gestion des licences</span>
+                </a>
             </nav>
         </aside>
         <!-- Main Content -->
@@ -38,19 +45,8 @@
             <div class="container w-1/2 max-w-4xl p-6 mx-auto bg-white rounded-lg shadow-md ">
                 <h1 class="mb-4 text-3xl font-semibold">Ajouter un nouvel employé</h1> <br>
 
-                <!-- Affichage des erreurs de validation -->
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
                 <!-- Formulaire de création d'employé -->
-                <form action="{{ route('employes.store') }}" method="POST">
+                <form action="{{ route('employes.store') }}" method="POST"  class="bg-white p-6 rounded shadow-md">
                     @csrf
 
                     <div class="form-group">
@@ -83,14 +79,14 @@
                         <input type="date" name="date_embauche" id="date_embauche" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500  form-control" value="{{ old('date_embauche') }}">
                     </div>
 
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="user_id"  class="block text-2xl font-medium text-black">Utilisateur :</label>
                         <select name="user_id" id="user_id" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500   form-control">
                             @foreach($users as $user)
                                 <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div> --}}
 
                     <div class="form-group">
                         <label for="equipement_id"  class="block text-2xl font-medium text-black">Équipements :</label>
@@ -101,8 +97,19 @@
                         </select>
                     </div> <br>
 
-                    <button type="submit" class="p-2 text-black transition duration-300 bg-white rounded-md w-80px hover:bg-blue-700 text-2xl">Créer l'employé</button>
+                    <button type="submit" class="px-4 py-2  text-black transition duration-300 bg-white rounded-md w-80px hover:bg-blue-700 text-2xl">Créer l'employé</button>
                 </form>
+
+                    <!-- Affichage des erreurs de validation -->
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </div>
         </main>
     </div>

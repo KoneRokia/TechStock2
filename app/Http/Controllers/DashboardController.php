@@ -6,6 +6,7 @@ use App\Models\Equipement;
 use App\Models\Employe;
 use App\Models\Maintenance;
 use App\Models\Rapport;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -30,6 +31,14 @@ class DashboardController extends Controller
         // Total rapports
         $totalRapports = Rapport::count();
 
+         // Total licences
+         $totalLicences = Rapport::count();
+
+          // Total losgiciel
+        $totalLogiciels = Rapport::count();
+
+
+
         // Passer les données à la vue
         return view('dashboard', [
             'totalEmployes' => $totalEmployes,
@@ -41,6 +50,20 @@ class DashboardController extends Controller
             'maintenancesEnCours' => $maintenancesEnCours,
             'maintenancesTerminees' => $maintenancesTerminees,
             'totalRapports' => $totalRapports,
+            'totalLicences' => $totalLicences,
+            'totalLogiciels' => $totalLogiciels,
+
         ]);
+    }
+
+        public function showDashboard()
+    {
+        $user = auth()->user(); // Récupère l'utilisateur authentifié
+        $notifications = $user->notifications; // Récupère toutes les notifications de l'utilisateur
+        $unreadNotifications = $user->unreadNotifications; // Notifications non lues
+        $readNotifications = $user->readNotifications; // Notifications lues
+
+        // Passe les notifications à la vue
+        return view('dashboard', compact('notifications', 'unreadNotifications', 'readNotifications'));
     }
 }

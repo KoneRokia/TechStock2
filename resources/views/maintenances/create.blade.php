@@ -35,6 +35,13 @@
             <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                 <span>🧑‍💼</span> <span>Gestion des employés</span>
             </a>
+            <a href="{{ route('logiciels.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                <span>🖥️</span> <span>Gestion des logiciels</span>
+            </a>
+
+            <a href="{{ route('licences.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                <span>🔑</span> <span>Gestion des licences</span>
+            </a>
         </nav>
     </aside>
     <!-- Main Content -->
@@ -42,7 +49,7 @@
         <div class="container w-1/2 max-w-4xl p-6 mx-auto bg-white rounded-lg shadow-md ">
             <h2 class="mb-4 text-3xl font-bold">Ajouter une maintenance</h2> <br>
 
-            <form action="{{ route('maintenances.store') }}" method="POST">
+            <form action="{{ route('maintenances.store') }}" method="POST"  class="bg-white p-6 rounded shadow-md">
                 @csrf
                 <label class="block text-2xl font-medium" >Date :</label>
                 <input type="date" name="date" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required> <br><br>
@@ -73,7 +80,7 @@
                     @endforeach
                 </select> <br> <br>
 
-                <button type="submit" class="px-4 py-2 mt-2 text-white bg-green-500">Enregistrer</button>
+                <button type="submit" class="px-4 py-2 mt-2 text-white bg-blue-500">Enregistrer</button>
             </form>
         </div>
     </main>

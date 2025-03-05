@@ -30,15 +30,23 @@
                 <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>🧑‍💼</span> <span>Gestion des employés</span>
                 </a>
+
+                <a href="{{ route('logiciels.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>🖥️</span> <span>Gestion des logiciels</span>
+                </a>
+
+                <a href="{{ route('licences.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>🔑</span> <span>Gestion des licences</span>
+                </a>
             </nav>
         </aside>
 
         <!-- Main Content -->
         <main class="flex-1 p-10 bg-gray-100" >
-            <div class="container">
-                <h1 class="mb-4 text-2xl font-bold">Ajouter un rapport</h1>
+            <div class="container w-1/2 max-w-4xl p-6 mx-auto bg-white rounded-lg shadow-md ">
+                 <h1 class="mb-4 text-2xl font-bold">Ajouter un rapport</h1>
 
-                <form action="{{ route('rapports.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('rapports.store') }}" method="POST" enctype="multipart/form-data"   class="bg-white p-6 rounded shadow-md">
                     @csrf
                      <div class="mb-4">
                         <label class="block text-sm font-bold">Titre</label>
@@ -62,12 +70,13 @@
                         @foreach($equipements as $equipement)
                             <option value="{{ $equipement->id }}">{{ $equipement->nom }}</option>
                         @endforeach
-                    </select>
+                    </select> <br><br>
 
-                     <div class="mb-4">
+                     {{-- <div class="mb-4">
                         <label class="block text-sm font-bold">Fichier (optionnel)</label>
                         <input type="file" name="fichier" class="w-full p-2 border rounded">
-                    </div>
+                    </div> --}}
+
                     <button type="submit" class="btn btn-primary">Enregistrer</button>
                 </form>
             </div>

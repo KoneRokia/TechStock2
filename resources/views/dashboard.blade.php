@@ -44,6 +44,15 @@
                 <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>🧑‍💼</span> <span>Gestion des employés</span>
                 </a>
+
+                <a href="{{ route('logiciels.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>🖥️</span> <span>Gestion des logiciels</span>
+                </a>
+
+                <a href="{{ route('licences.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>🔑</span> <span>Gestion des licences</span>
+                </a>
+
             </nav>
         </aside>
 
@@ -86,6 +95,16 @@
                     <h3 class="text-lg font-semibold text-gray-700"><i class="text-blue-500 fas fa-file-alt"></i> Total Rapports</h3>
                     <p class="text-3xl font-bold text-blue-500">{{ $totalRapports }}</p>
                 </div>
+                <div class="p-6 bg-white rounded-lg shadow-md">
+                    <h3 class="text-lg font-semibold text-gray-700"><i class="text-cyan-500 fas fa-key"></i> Total Licences </h3>
+                    <p class="text-3xl font-bold text-cyan-500">{{ $totalLicences }}</p>
+                </div>
+
+                <div class="p-6 bg-white rounded-lg shadow-md">
+                    <h3 class="text-lg font-semibold text-gray-700"> <i class="text-purple-500 fas fa-laptop-code"></i> Total Logiciels</h3>
+                    <p class="text-3xl font-bold text-purple-500">{{ $totalLogiciels }}</p>
+                </div>
+
             </div>
         </main>
     </div>
