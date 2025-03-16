@@ -37,10 +37,10 @@
 
                 <a href="{{ route('rapports.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>📑</span> <span>Gestion des rapports</span>
-                {{-- </a>
-                <a href="{{ route('utilisateurs.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
-                    <span>👥</span> <span>Gestion des utilisateurs</span>
-                </a> --}}
+                 </a>
+                 <a href="{{ route('users.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>👥</span> <span>Liste des utilisateurs</span>
+                </a>
                 <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>🧑‍💼</span> <span>Gestion des employés</span>
                 </a>
@@ -60,8 +60,11 @@
         <main class="flex-1 p-10 bg-gray-100">
             <div class="container">
                 <h2 class="mb-4 text-2xl font-bold">Gestion des licences</h2> <br><br>
+
+            @if(auth()->user()->role === 'admin' || auth()->user()->role === 'editeur')
             <a href="{{ route('licences.create') }}" class="p-2 mb-4 text-white bg-blue-600 rounded">Ajouter une licence</a>
-            <br> <br>
+        @endif <br> <br>
+
 
             <!-- Affichage des licences -->
             <table class="w-full overflow-hidden bg-white rounded-lg shadow-md table-auto">
@@ -92,7 +95,7 @@
                                 @endif
                             </td>
 
-                            <td class="px-4 py-2 border text-center">
+                            <td class="px-4 py-2 text-center border">
 
                                 <a href="{{ route('licences.show', $licence) }}" class="text-green-500">👁️</a>
 

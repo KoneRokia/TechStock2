@@ -26,10 +26,10 @@
 
                 <a href="{{ route('rapports.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>📑</span> <span>Gestion des rapports</span>
-                {{-- </a>
-                <a href="{{ route('utilisateurs.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
-                    <span>👥</span> <span>Gestion des utilisateurs</span>
-                </a> --}}
+                 </a>
+                 <a href="{{ route('users.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>👥</span> <span>Liste des utilisateurs</span>
+                </a>
                 <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>🧑‍💼</span> <span>Gestion des employés</span>
                 </a>
@@ -54,9 +54,11 @@
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
+    <div class="overflow-y-auto max-h-[500px] border rounded-lg shadow-md">
 
-    <table class="w-full border border-collapse border-gray-300 table-auto">
-        <thead>
+    <table class="w-full border border-collapse border-gray-300 table-auto" style="font-size:20px">
+        <thead class="sticky top-0 bg-[#67b09d] text-white">
+
             <tr class="text-white bg-blue-900">
                 <th class="p-2 border">Type</th>
                 <th class="p-2 border">Description</th>
@@ -116,6 +118,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                </div>
                 {{ $rapports->links() }}
             </div>
         </main>

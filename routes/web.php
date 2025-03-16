@@ -14,6 +14,8 @@ use App\Http\Controllers\HistoriqueController;
 use App\Http\Controllers\LogicielController;
 use App\Http\Controllers\LicenceController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\CheckAccountStatus;
 
 
 /*
@@ -40,9 +42,11 @@ Route::get('/equipements/create', [EquipementController::class, 'create'])->name
 Route::post('/equipements', [EquipementController::class, 'store'])->name('equipements.store'); // Enregistrement de l'équipement
 Route::get('/equipements/{equipement}/edit', [EquipementController::class, 'edit'])->name('equipements.edit'); // Formulaire d'édition
 Route::put('/equipements/{equipement}', [EquipementController::class, 'update'])->name('equipements.update'); // Mise à jour de l'équipement
-Route::delete('/equipements/{equipement}', [EquipementController::class, 'destroy'])->name('equipements.destroy'); // Suppression de l'équipement
+// Route::delete('/equipements/{equipement}', [EquipementController::class, 'destroy'])->name('equipements.destroy'); // Suppression de l'équipement
 Route::get('/equipements/{equipement}', [EquipementController::class, 'show'])->name('equipements.show');
-
+Route::put('/equipements/{id}/supprimer', [EquipementController::class, 'supprimer'])->name('equipements.supprimer');
+Route::put('/equipements/{id}/desactiver', [EmployeController::class, 'desactiver'])->name('equipements.desactiver');
+Route::POST('/equipements/filter', [EquipementController::class, 'filterEquipements']);
 
 
 Route::resource('maintenances', MaintenanceController::class);
@@ -54,13 +58,15 @@ Route::post('/employes', [EmployeController::class, 'store'])->name('employes.st
 Route::get('/employes/{employe}', [EmployeController::class, 'show'])->name('employes.show');
 Route::get('/employes/{employe}/edit', [EmployeController::class, 'edit'])->name('employes.edit');
 Route::put('/employes/{employe}', [EmployeController::class, 'update'])->name('employes.update');
-Route::delete('/employes/{employe}', [EmployeController::class, 'destroy'])->name('employes.destroy');
+// Route::delete('/employes/{employe}', [EmployeController::class, 'destroy'])->name('employes.destroy');
 
 
 Route::get('/employes/{employe}/affectation', [EmployeController::class, 'showAffectationForm'])
     ->name('employes.affectation');
 Route::post('/employes/{employe}/affecter-equipements', [EmployeController::class, 'affecterEquipements'])
     ->name('employes.affecter-equipements');
+    Route::put('/employes/{id}/supprimer', [EmployeController::class, 'supprimer'])->name('employes.supprimer');
+    Route::put('/employes/{id}/toggle', [EmployeController::class, 'toggleStatut'])->name('employes.toggle');
 
 
 Route::middleware(['auth'])->group(function () {
@@ -74,14 +80,24 @@ Route::get('/historiques', [HistoriqueController::class, 'index'])->name('histor
 
 Route::resource('logiciels', LogicielController::class);
 
-// Route::get('/logicielss', [EmployeController::class, 'index'])->name('logiciels.index');
-// Route::get('/logiciels/create', [EmployeController::class, 'create'])->name('logiciels.create');
-// Route::post('/logiciels', [EmployeController::class, 'store'])->name('logiciels.store');
-// Route::get('/logiciels/{logiciel}', [EmployeController::class, 'show'])->name('logiciels.show');
-// Route::get('/logiciels/{logiciel}/edit', [EmployeController::class, 'edit'])->name('logiciels.edit');
-// Route::put('/logiciels/{logiciel}', [EmployeController::class, 'update'])->name('logiciels.update');
-// Route::delete('/logiciels/{logiciel}', [EmployeController::class, 'destroy'])->name('logiciels.destroy');
+// Routes réservées aux admins
+Route::middleware(['role:admin'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    });
+});
 
+// Routes réservées aux éditeurs
+Route::middleware(['role:editeur'])->group(function () {
+    Route::get('/editeur/dashboard', function () {
+        return view('editeur.dashboard');
+    });
+});
+
+// Routes accessibles à tous les utilisateurs
+Route::get('/home', function () {
+    return view('home');
+});
 
 
 Route::resource('licences', LicenceController::class);
@@ -93,20 +109,33 @@ Route::get('/notifications', [NotificationController::class, 'showNotifications'
 Route::get('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
 
 
-
-
-
-Route::get('/statistiques', [StatistiqueController::class, 'index'])->name('statistiques.index');
-Route::get('/utilisateurs', [UserController::class, 'index'])->name('utilisateurs.index');
-
-
-
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+Route::middleware(['auth', 'check.account.status'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::patch('/profile/delete', [ProfileController::class, 'softDelete'])->name('profile.softDelete');
+
+    Route::middleware(['auth'])->group(function () {
+        Route::put('/profile/deactivate', [ProfileController::class, 'deactivate'])->name('profile.deactivate');
+    });
+
+    Route::middleware(['auth', 'admin'])->group(function () {
+        Route::put('/profile/{id}/activate', [ProfileController::class, 'activate'])->name('profile.activate');
+        Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
+    });
+
+
+    Route::patch('/admin/users/{user}/statut', [UserController::class, 'updateStatut'])
+    ->name('admin.users.statut')
+    ->middleware(['auth', 'admin']);
+
 });
 
 require __DIR__.'/auth.php';

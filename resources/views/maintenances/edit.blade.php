@@ -23,10 +23,10 @@
 
                 <a href="{{ route('rapports.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>📑</span> <span>Gestion des rapports</span>
-                {{-- </a>
-                <a href="{{ route('utilisateurs.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
-                    <span>👥</span> <span>Gestion des utilisateurs</span>
-                </a> --}}
+                 </a>
+                 <a href="{{ route('users.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>👥</span> <span>Liste des utilisateurs</span>
+                </a>
                 <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>🧑‍💼</span> <span>Gestion des employés</span>
                 </a>
@@ -46,10 +46,10 @@
                 <h1 class="mb-4 text-3xl font-semibold">Modifier la maintenance</h1>
 
                 <!-- Formulaire d'ajout -->
-                <div class="p-4 rounded-lg" style="background-color:#babaf7">
+                <div class="p-4 rounded-lg" style="background-color:#e7e7f8">
 
 
-                    <form action="{{ route('maintenances.update', $maintenance->id) }}" method="POST">
+                    <form action="{{ route('maintenances.update', $maintenance->id) }}" method="POST" class="p-6 bg-white rounded shadow-md">
                         @csrf
                         @method('PUT')
 
@@ -58,21 +58,33 @@
                         <label for="date">Date</label>
                         <input type="date" name="date" value="{{ old('date', $maintenance->date) }}" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
 
-                        <!-- Type de maintenance -->
-                        <label for="type">Type</label>
-                        <input type="text" name="type" value="{{ old('type', $maintenance->type) }}" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                <label for="type">Type de maintenance</label>
+                                <select name="type" id="type" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                    <option value="">-- Sélectionner un type --</option>
+                                    <option value="Préventive" {{ old('type', $maintenance->type) == 'Préventive' ? 'selected' : '' }}>Préventive</option>
+                                    <option value="Curative" {{ old('type', $maintenance->type) == 'Curative' ? 'selected' : '' }}>Curative</option>
+                                    <option value="Corrective" {{ old('type', $maintenance->type) == 'Corrective' ? 'selected' : '' }}>Corrective</option>
+                                    <option value="Évolutive" {{ old('type', $maintenance->type) == 'Évolutive' ? 'selected' : '' }}>Évolutive</option>
+                                </select>
 
                         <!-- Coût de la maintenance -->
-                        <label for="cout">Coût</label>
-                        <input type="number" name="cout" value="{{ old('cout', $maintenance->cout) }}" min="0" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <div class="mb-4">
+                            <label for="cout" class="block text-2xl font-medium text-black">Coût</label>
+                            <input type="text" name="cout" id="cout" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
 
                         <!-- État de la maintenance -->
-                        <label for="etat">État</label>
+                        <label class="block text-2xl font-medium">État de la maintenance :</label>
                         <select name="etat" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <option value="">-- Sélectionner un état --</option>
                             <option value="en cours" {{ old('etat', $maintenance->etat) == 'en cours' ? 'selected' : '' }}>En cours</option>
                             <option value="terminé" {{ old('etat', $maintenance->etat) == 'terminé' ? 'selected' : '' }}>Terminé</option>
+                            <option value="en attente" {{ old('etat', $maintenance->etat) == 'en attente' ? 'selected' : '' }}>En attente</option>
                             <option value="annulé" {{ old('etat', $maintenance->etat) == 'annulé' ? 'selected' : '' }}>Annulé</option>
+                            <option value="reporté" {{ old('etat', $maintenance->etat) == 'reporté' ? 'selected' : '' }}>Reporté</option>
                         </select>
+                        <br><br>
+
 
                         <!-- Utilisateur assigné -->
                         <label for="user_id">Technicien</label>
@@ -94,7 +106,7 @@
                             @endforeach
                         </select>
 
-                        <button type="submit">Modifier</button>
+                        <button type="submit" class="px-4 py-2 mt-2 text-white bg-blue-500">Modifier</button>
                     </form>
 
                     @if ($errors->any())

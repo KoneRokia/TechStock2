@@ -16,11 +16,12 @@ class EquipementController extends Controller
     // Afficher la liste des équipements
     public function index()
     {
-        // Récupérer tous les équipements
-        $equipements = Equipement::all(); // Tu peux ajouter des options de pagination si nécessaire
+        // Récupérer uniquement les équipements actifs
+        $equipements = Equipement::where('statut', '!=', 'supprimer')->get();
 
         return view('equipements.index', compact('equipements'));
     }
+
 
     // Afficher le formulaire pour ajouter un nouvel équipement
     public function create()
@@ -36,7 +37,7 @@ class EquipementController extends Controller
         // Valider les données du formulaire
         $request->validate([
         'nom' => 'required|string|max:255',
-        'type' => 'required|string|max:255',
+        'type' => 'required|string|in:Ordinateur,Imprimante,Serveur,Switch,Routeur,Autre',
         'cout' => 'required|string|max:255',
         'etat' => 'required|in:actif,en panne,hors service',
         'date_achat' => 'required|date',
@@ -46,6 +47,8 @@ class EquipementController extends Controller
         'marque' => 'required|string|max:255',
         'caracteristique' => 'required|string',
         'photo_equip' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'code_barre' => 'nullable|string|unique:equipements,code_barre',
+
 
         ]);
         // dd($request->all());
@@ -59,6 +62,9 @@ class EquipementController extends Controller
          else {
         $photoPath = null;
          }
+
+         $codeBarre = $request->code_barre ?? Str::random(10); // Générer un code-barres unique si vide
+
 
         // Créer un nouvel équipement dans la base de données
         Equipement::create([
@@ -74,30 +80,32 @@ class EquipementController extends Controller
             'marque' => $request->marque,
             'caracteristique' => $request->caracteristique,
             'photo_equip' => $photoPath,
+            'code_barre' => $codeBarre,
+
         ]);
 
         // Rediriger vers la liste des équipements
         return redirect()->route('equipements.index')->with('success', 'Équipement ajouté avec succès.');
     }
 
-    //Suppression
+    // //Suppression
 
-    public function destroy($id)
-    {
-        try {
-            $equipement = Equipement::find($id);
+    // public function destroy($id)
+    // {
+    //     try {
+    //         $equipement = Equipement::find($id);
 
-            if (!$equipement) {
-                return redirect()->back()->with('error', 'Équipement introuvable.');
-            }
+    //         if (!$equipement) {
+    //             return redirect()->back()->with('error', 'Équipement introuvable.');
+    //         }
 
-            $equipement->delete();
+    //         $equipement->delete();
 
-            return redirect()->back()->with('success', 'Équipement supprimé avec succès.');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Une erreur est survenue : ' . $e->getMessage());
-        }
-    }
+    //         return redirect()->back()->with('success', 'Équipement supprimé avec succès.');
+    //     } catch (\Exception $e) {
+    //         return redirect()->back()->with('error', 'Une erreur est survenue : ' . $e->getMessage());
+    //     }
+    // }
 
 
         // Modification
@@ -120,7 +128,7 @@ public function update(Request $request, $id)
     $request->validate([
         'nom' => 'required|string|max:255',
         'type' => 'required|string|max:255',
-        'cout' => 'required|numeric',
+        'cout' => 'required|string|max:255',
         'etat' => 'required|string|max:255',
         'date_achat' => 'required|date',
         'numero_serie' => 'required|string|max:255',
@@ -170,6 +178,38 @@ public function update(Request $request, $id)
     {
         return view('equipements.show', compact('equipement'));
     }
+
+
+    // Suppression physique d'equipement
+
+    public function supprimer($id)
+    {
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('equipements.index')->with('error', 'Vous n\'êtes pas autorisé à supprimer.');
+        }
+
+        $equipement = Equipement::findOrFail($id);
+        $equipement->statut = 'supprimer';
+        $equipement->save();
+
+        return redirect()->route('equipements.index')->with('success', 'L\'équipement a été marqué comme supprimé.');
+    }
+
+
+
+    public function filterEquipements(Request $request)
+    {
+        // Vérifier si le numéro de série est fourni
+        $numero_serie = $request->input('numero_serie');
+
+        // Rechercher les équipements avec ce numéro de série (en utilisant un "like" pour une recherche partielle)
+        $equipements = Equipement::where('numero_serie', 'like', '%' . $numero_serie . '%')->get();
+
+        // Retourner les équipements sous forme de JSON
+        return response()->json($equipements);
+    }
+
+
 
 
 }

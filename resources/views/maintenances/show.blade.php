@@ -26,10 +26,10 @@
 
                 <a href="{{ route('rapports.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>📑</span> <span>Gestion des rapports</span>
-                {{-- </a>
-                <a href="{{ route('utilisateurs.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
-                    <span>👥</span> <span>Gestion des utilisateurs</span>
-                </a> --}}
+                </a>
+                <a href="{{ route('users.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>👥</span> <span>Liste des utilisateurs</span>
+                </a>
                 <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>🧑‍💼</span> <span>Gestion des employés</span>
                 </a>
@@ -52,6 +52,7 @@
                     <p class="mb-2 text-gray-700"><strong>Type :</strong> {{  $maintenance->type}}</p>
                     <p class="mb-2 text-gray-700"><strong>Coût :</strong> {{ $maintenance->cout }}</p>
                     <p class="text-gray-700"><strong>Date :</strong> {{ $maintenance->date}}</p>
+                    <p class="text-gray-700"><strong>Etat :</strong> {{ $maintenance->etat}}</p>
                     <p class="text-gray-700"><strong>Technicien :</strong> {{ $maintenance->user->name ?? 'N/A' }}</p>
 
 

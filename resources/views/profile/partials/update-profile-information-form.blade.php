@@ -18,17 +18,20 @@
         @method('patch')
 
 
-           <!-- Photo de profil -->
+          <!-- Photo de profil -->
         <div class="flex items-center gap-4">
             <div>
                 <x-input-label for="photo" :value="('Photo de profil')" />
-                <input id="photo" name="photo" type="file" class="block w-full mt-1 text-sm text-gray-900 dark:text-gray-100" accept="image/*" onchange="previewImage(event)">
+                <input id="photo" name="photo" type="file" class="mt-1 block w-full text-sm text-gray-900 dark:text-gray-100" accept="image/*" onchange="previewImage(event)">
                 <x-input-error class="mt-2" :messages="$errors->get('photo')" />
             </div>
-            <div class="w-20 h-20 overflow-hidden border rounded-full">
-                <img id="profilePreview" src="{{ $user->photo ? asset('storage/' . $user->photo) : asset('images/default-avatar.png') }}"
-                    alt="Photo de profil" class="object-cover w-full h-full">
+            <div class="w-20 h-20 rounded-full overflow-hidden border">
+                @if($user->photo && file_exists(public_path('storage/' . $user->photo)))
+                    <img src="{{ asset('storage/' . $user->photo) }}" alt="Photo de profil" class="object-cover w-full h-full">
+                
+                @endif
             </div>
+
         </div>
 
         <div>

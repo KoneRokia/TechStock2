@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('cout')->nullable(false);
             $table->enum('etat', ['actif', 'en panne', 'hors service'])->nullable(false);
             $table->date('date_achat')->nullable(false);
-            // $table->string('nom_utilisateur')->nullable();
+            $table->enum('statut', ['actif', 'desactif', 'supprimer'])->default('actif');
             $table->string('numero_serie')->unique();
             $table->string('marque')->nullable(false);
             $table->text('caracteristique')->nullable(false);

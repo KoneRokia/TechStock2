@@ -15,9 +15,9 @@
     >{{ __('Supprimer le compte') }}</x-danger-button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
-        <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
+        <form method="post" action="{{ route('profile.softDelete') }}" class="p-6">
             @csrf
-            @method('delete')
+            @method('patch')
 
             <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                 {{ __('Êtes-vous sûr de vouloir supprimer votre compte?') }}

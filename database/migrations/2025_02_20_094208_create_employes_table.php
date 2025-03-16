@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('telephone')->nullable();
             $table->string('poste');
+            $table->enum('statut', ['actif', 'desactif', 'supprimer'])->default('actif');
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->date('date_embauche');
             $table->timestamps();

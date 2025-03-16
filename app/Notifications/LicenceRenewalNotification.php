@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\DatabaseMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class RenewalNotification extends Notification
+class LicenceRenewalNotification extends Notification
 {
     use Queueable;
 

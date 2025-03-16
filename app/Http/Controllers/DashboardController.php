@@ -7,6 +7,8 @@ use App\Models\Employe;
 use App\Models\Maintenance;
 use App\Models\Rapport;
 use App\Models\User;
+use App\Models\Licence;
+ use App\Models\Logiciel;
 
 class DashboardController extends Controller
 {
@@ -27,15 +29,19 @@ class DashboardController extends Controller
         $totalMaintenances = Maintenance::count();
         $maintenancesEnCours = Maintenance::where('etat', 'en cours')->count();
         $maintenancesTerminees = Maintenance::where('etat', 'terminé')->count();
+        $maintenancesEnAttente = Maintenance::where('etat', 'en attente')->count();
+        $maintenancesAnnulees = Maintenance::where('etat', 'annulé')->count();
+        $maintenancesReporte = Maintenance::where('etat', 'reporté')->count();
+
 
         // Total rapports
         $totalRapports = Rapport::count();
 
          // Total licences
-         $totalLicences = Rapport::count();
+         $totalLicences = Licence::count();
 
           // Total losgiciel
-        $totalLogiciels = Rapport::count();
+        $totalLogiciels = Logiciel::count();
 
 
 
@@ -49,6 +55,9 @@ class DashboardController extends Controller
             'totalMaintenances' => $totalMaintenances,
             'maintenancesEnCours' => $maintenancesEnCours,
             'maintenancesTerminees' => $maintenancesTerminees,
+            'maintenancesEnAttente' => $maintenancesEnAttente,
+            'maintenancesAnnulees' => $maintenancesAnnulees,
+            'maintenancesReporte' => $maintenancesReporte,
             'totalRapports' => $totalRapports,
             'totalLicences' => $totalLicences,
             'totalLogiciels' => $totalLogiciels,

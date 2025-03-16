@@ -23,10 +23,10 @@
 
                 <a href="{{ route('rapports.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>📑</span> <span>Gestion des rapports</span>
-                {{-- </a>
-                <a href="{{ route('utilisateurs.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
-                    <span>👥</span> <span>Gestion des utilisateurs</span>
-                </a> --}}
+                 </a>
+                 <a href="{{ route('users.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>👥</span> <span>Liste des utilisateurs</span>
+                </a>
                 <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>🧑‍💼</span> <span>Gestion des employés</span>
                 </a>
@@ -46,7 +46,9 @@
             <div class="container w-1/2 max-w-4xl p-6 mx-auto bg-white rounded-lg shadow-md ">
                  <h1 class="mb-4 text-2xl font-bold">Ajouter un rapport</h1>
 
-                <form action="{{ route('rapports.store') }}" method="POST" enctype="multipart/form-data"   class="bg-white p-6 rounded shadow-md">
+                 <div class="p-4 rounded-lg" style="background-color:#f5f5f8">
+
+                <form action="{{ route('rapports.store') }}" method="POST" enctype="multipart/form-data"   class="p-6 bg-white rounded shadow-md">
                     @csrf
                      <div class="mb-4">
                         <label class="block text-sm font-bold">Titre</label>
@@ -77,8 +79,9 @@
                         <input type="file" name="fichier" class="w-full p-2 border rounded">
                     </div> --}}
 
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    <button type="submit" class="px-4 py-2 mt-2 text-white bg-blue-500 btn btn-primary">Enregistrer</button>
                 </form>
+                </div>
             </div>
 
                         @if ($errors->any())

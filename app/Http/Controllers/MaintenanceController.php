@@ -28,9 +28,9 @@ class MaintenanceController extends Controller
     {
         $request->validate([
             'date' => 'required|date',
-            'type' => 'required|string',
-            'cout' => 'required|numeric|min:0',
-            'etat' => 'required|in:en cours,terminé,annulé',
+            'type' => 'required|string|in:Préventive,Curative,Corrective,Évolutive',
+            'cout' => 'required|string|max:255',
+            'etat' => 'required|string|in:en cours,terminé,en attente,annulé,reporté',
             'user_id' => 'required|exists:users,id',
             'equipement_id' => 'required|exists:equipements,id',
         ]);
@@ -60,9 +60,9 @@ class MaintenanceController extends Controller
     {
         $request->validate([
             'date' => 'required|date',
-            'type' => 'required|string',
-            'cout' => 'required|numeric|min:0',
-            'etat' => 'required|in:en cours,terminé,annulé',
+            'type' => 'required|string|in:Préventive,Curative,Corrective,Évolutive',
+            'cout' => 'required|string|max:255',
+            'etat' => 'required|string|in:en cours,terminé,en attente,annulé,reporté',
             'user_id' => 'required|exists:users,id',
             'equipement_id' => 'required|exists:equipements,id',
         ]);

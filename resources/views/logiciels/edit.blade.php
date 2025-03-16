@@ -23,10 +23,10 @@
 
                 <a href="{{ route('rapports.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>📑</span> <span>Gestion des rapports</span>
-                {{-- </a>
-                <a href="{{ route('utilisateurs.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
-                    <span>👥</span> <span>Gestion des utilisateurs</span>
-                </a> --}}
+                </a>
+                <a href="{{ route('users.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>👥</span> <span>Liste des utilisateurs</span>
+                </a>
                 <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>🧑‍💼</span> <span>Gestion des employés</span>
                 </a>
@@ -57,8 +57,10 @@
                     </div>
                 @endif
 
+                <div class="p-4 rounded-lg" style="background-color:#f5f5f8">
+
                 <!-- Formulaire de modification du logiciel -->
-                <form action="{{ route('logiciels.update', $logiciel->id) }}" method="POST" class="bg-white p-6 rounded shadow-md">
+                <form action="{{ route('logiciels.update', $logiciel->id) }}" method="POST" class="p-6 bg-white rounded shadow-md">
                     @csrf
                     @method('PUT')
 
@@ -123,9 +125,10 @@
                     </div>
 
                     <div class="mb-4">
-                        <button type="submit" class=" p-2 bg-blue-500 text-white rounded">Mettre à jour le logiciel</button>
+                        <button type="submit" class="p-2 text-white bg-blue-500 rounded ">Mettre à jour le logiciel</button>
                     </div>
                 </form>
+                </div>
             </div>
         </main>
     </div>

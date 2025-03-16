@@ -26,10 +26,10 @@
 
                 <a href="{{ route('rapports.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>📑</span> <span>Gestion des rapports</span>
-                {{-- </a>
-                <a href="{{ route('utilisateurs.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
-                    <span>👥</span> <span>Gestion des utilisateurs</span>
-                </a> --}}
+                </a>
+                <a href="{{ route('users.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>👥</span> <span>Liste des utilisateurs</span>
+                </a>
                 <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>🧑‍💼</span> <span>Gestion des employés</span>
                 </a>
@@ -55,6 +55,7 @@
                     <p class="mb-2 text-gray-700"><strong>Date d'achat :</strong> {{ $equipement->date_achat }}</p>
                     <p class="mb-2 text-gray-700"><strong>Numéro de série :</strong> {{ $equipement->numero_serie }}</p>
                     <p class="mb-2 text-gray-700"><strong>Marque :</strong> {{ $equipement->marque }}</p>
+                    <p class="mb-2 text-gray-700"><strong>Code Barre :</strong> {{ $equipement->code_barre }}</p>
                     <p class="text-gray-700"><strong>Caractéristiques :</strong> {{ $equipement->caracteristique }}</p>
                     <td class="px-4 py-2 border">
                         <img src="{{ asset('storage/' . $equipement->photo_equip) }}" alt="Image de l'équipement" class="object-cover w-16 h-16 rounded">

@@ -16,13 +16,14 @@ class EmployeController extends Controller
      */
     public function index()
     {
-         // Récupère tous les employés, avec leurs équipements si nécessaire
-        $employes = Employe::with('equipements')->get();
-        $equipements = Equipement::all();
-
-        // Passe les données à la vue
-    return view('employes.index', compact('employes', 'equipements'));
+        // Récupérer uniquement les employés qui ne sont pas supprimés
+        $employes = Employe::where('statut', '!=', 'supprimer')->get();
+         // Récupérer les employés actifs
+        $employes = Employe::where('statut', 'actif')->get();
+        
+        return view('employes.index', compact('employes'));
     }
+
 
     /**
      * Affiche le formulaire de création d'un employé.
@@ -87,7 +88,17 @@ class EmployeController extends Controller
                 ->orderBy('date_passation', 'desc')
                 ->first();
 
+
+
+
             $ancien_utilisateur_id = $dernierHistorique ? $dernierHistorique->nouveau_utilisateur_id : null;
+
+            // Vérifier si l'ancien utilisateur existe dans la table employes
+            if ($ancien_utilisateur_id && !Employe::find($ancien_utilisateur_id)) {
+
+                // Si l'utilisateur n'existe pas, mettre ancien_utilisateur_id à null
+                $ancien_utilisateur_id = null;
+            }
 
             // Calcul du temps d'utilisation
             $temps_utilisation = $dernierHistorique ? now()->diffInDays($dernierHistorique->date_passation) : null;
@@ -184,6 +195,49 @@ class EmployeController extends Controller
             $employe->historiquesNouveaux()->update(['nouveau_utilisateur_id' => null]);
         });
     }
+
+
+    //Suppression physique d'employé
+
+        public function supprimer($id)
+    {
+        // Vérification si l'utilisateur est admin
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('employes.index')->with('error', 'Vous n\'êtes pas autorisé à supprimer.');
+        }
+
+        // Trouver l'employé
+        $employe = Employe::findOrFail($id);
+
+        // Marquer l'employé comme supprimé (au lieu de le supprimer définitivement)
+        $employe->statut = 'supprimer';
+        $employe->save();
+
+        return redirect()->route('employes.index')->with('success', 'L\'employé a été marqué comme supprimé.');
+    }
+
+    public function toggleStatut($id)
+    {
+        // Vérifier si l'utilisateur est admin
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('employes.index')->with('error', 'Seul l\'admin peut activer/désactiver un employé.');
+        }
+
+        // Récupérer l'employé
+        $employe = Employe::findOrFail($id);
+
+        // Basculer le statut entre 'actif' et 'inactif'
+        $employe->statut = ($employe->statut === 'actif') ? 'desactif' : 'actif';
+        $employe->save();
+
+        // Retourner avec un message de succès
+        return redirect()->route('employes.index')->with('success', 'Statut de l\'employé mis à jour avec succès.');
+    }
+
+
+
+
+
 }
 
 

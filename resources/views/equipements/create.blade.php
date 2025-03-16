@@ -23,10 +23,10 @@
 
                 <a href="{{ route('rapports.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>📑</span> <span>Gestion des rapports</span>
-                {{-- </a>
-                <a href="{{ route('utilisateurs.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
-                    <span>👥</span> <span>Gestion des utilisateurs</span>
-                </a> --}}
+                </a>
+                <a href="{{ route('users.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>👥</span> <span>Liste des utilisateurs</span>
+                </a>
                 <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>🧑‍💼</span> <span>Gestion des employés</span>
                 </a>
@@ -63,10 +63,18 @@
                     </div> --}}
 
 
-                    <div class="mb-4">
-                        <label for="type" class="block text-2xl font-medium text-black">Type</label>
-                        <input type="text" name="type" id="type" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                    </div>
+                    <div class="form-group">
+                        <label for="type" class="block text-2xl font-medium text-black">Type d'équipement</label>
+                        <select name="type" id="type" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <option value="">-- Sélectionner un type --</option>
+                            <option value="Ordinateur">Ordinateur</option>
+                            <option value="Imprimante">Imprimante</option>
+                            <option value="Serveur">Serveur</option>
+                            <option value="Switch">Switch</option>
+                            <option value="Routeur">Routeur</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+                    </div>  <br>
 
                     <div class="mb-4">
                         <label for="cout" class="block text-2xl font-medium text-black">Coût</label>
@@ -86,16 +94,10 @@
                         <label for="date_achat" class="block text-2xl font-medium text-black" >Date d'achat</label>
                         <input type="date" name="date_achat" id="date_achat" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                     </div>
-
-                    {{-- <div class="mb-4">
-                        <label for="user_id" class="block text-2xl font-medium text-black">Utilisateur </label>
-                        <select name="user_id" id="user_id" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                            <option value="" disabled selected>Choisir un utilisateur</option>
-                            @foreach($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                            @endforeach
-                        </select>
-                    </div> --}}
+                    <div class="mb-3">
+                        <label for="code_barre" class="block text-2xl font-medium text-black">Code Barre</label>
+                        <input type="text" name="code_barre" id="code_barre" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
 
 
                     <div class="mb-4">

@@ -27,10 +27,10 @@
 
                 <a href="{{ route('rapports.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>📑</span> <span>Gestion des rapports</span>
-                {{-- </a>
-                <a href="{{ route('utilisateurs.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
-                    <span>👥</span> <span>Gestion des utilisateurs</span>
-                </a> --}}
+                 </a>
+                 <a href="{{ route('users.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
+                    <span>👥</span> <span>Liste des utilisateurs</span>
+                </a>
                 <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>🧑‍💼</span> <span>Gestion des employés</span>
                 </a>
@@ -50,9 +50,11 @@
                 <div class="container">
                     <h2 class="mb-4 text-2xl font-semibold">Historique des équipements</h2><br><br>
 
-                    <table class="w-full overflow-hidden bg-white rounded-lg shadow-md table-auto">
+                    <div class="overflow-y-auto max-h-[500px] border rounded-lg shadow-md">
+                    <table class="w-full overflow-hidden bg-white rounded-lg shadow-md table-auto" style="font-size:20px">
 
-                        <thead>
+                        <thead class="sticky top-0 bg-[#67b09d] text-white">
+
                             <tr class="text-white bg-blue-900">
                                 <th class="px-4 py-2 border">Équipement</th>
                                 <th class="px-4 py-2 border">Numéro de série</th>
@@ -69,13 +71,14 @@
                                     <td class="px-4 py-2 border">{{ $historique->equipement->nom }}</td>
                                     <td class="px-4 py-2 border">{{ $historique->equipement->numero_serie }}</td>
                                     <td class="px-4 py-2 border">{{ $historique->ancienUtilisateur->nom ?? 'Aucun' }}</td>
-                                    <td class="px-4 py-2 border">{{ $historique->nouveauUtilisateur->nom }}</td>
+                                    <td class="px-4 py-2 border">{{ $historique->nouveauUtilisateur->nom ?? 'Aucun' }}</td>
                                     <td class="px-4 py-2 border">{{ $historique->date_passation }}</td>
                                     <td class="px-4 py-2 border">{{ $historique->temps_utilisation ?? 'Non défini' }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+                    </div>
                 </div>
         </main>
 

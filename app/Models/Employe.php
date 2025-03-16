@@ -17,6 +17,7 @@ class Employe extends Model
         'poste',
         'date_embauche',
         'user_id',
+        'statut',
     ];
 
     // Un employé peut avoir plusieurs équipements
@@ -37,5 +38,16 @@ class Employe extends Model
         return $this->belongsToMany(Logiciel::class, 'employe_logiciel', 'employe_id', 'logiciel_id');
     }
 
+
+    // Désactiver la suppression en cascade (si c'était activé auparavant)
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function($employe) {
+            // Ne pas supprimer les historiques
+            // Supprime cette ligne si elle existe : $employe->historiques()->delete();
+        });
+    }
 
 }
