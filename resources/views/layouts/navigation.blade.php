@@ -12,7 +12,7 @@
                         <div class="flex">
 
                             <div class="flex items-center space-x-4">
-                            <div class=""><h1 class="text-lg font-bold text-black" style="margin-right:600px; margin-top:60px; font-size:20px" >TABLEAU DE BORD</h1></div>
+                            <div class=""><h1 class="text-lg font-bold text-black" style="margin-right:900px; margin-top:60px; font-size:20px" >TABLEAU DE BORD</h1></div>
 
                                 <!-- Exemple avec une icône de notification (utilisant Font Awesome) -->
             <li class="nav-item" style="margin-top:60px;">

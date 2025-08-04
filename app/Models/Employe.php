@@ -45,8 +45,7 @@ class Employe extends Model
         parent::boot();
 
         static::deleting(function($employe) {
-            // Ne pas supprimer les historiques
-            // Supprime cette ligne si elle existe : $employe->historiques()->delete();
+
         });
     }
 

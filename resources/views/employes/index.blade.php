@@ -9,38 +9,38 @@
         <!-- Sidebar -->
         <aside class="w-64 min-h-screen p-6 text-white bg-blue-900 shadow-lg" style="margin-top:-1px">
             <nav class="space-y-4">
-                <a href="{{ route('dashboard') }}" class="flex items-center p-2 space-x-2 text-2xl hover:bg-blue-600" >
+                <a href="{{ route('dashboard') }}" class="flex items-center p-2 space-x-2 text-xl hover:bg-blue-600" >
                     <span>🏠</span> <span>Tableau de bord</span>
-                </a>
-                <a href="{{ route('equipements.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
-                    <span>🛠️</span> <span>Gestion des équipements</span>
-                </a>
-                <a href="{{ route('maintenances.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
-                    <span>⚙️</span> <span>Gestion des maintenances</span>
-                </a>
+                </a><br>
+                <a href="{{ route('equipements.index') }}" class="flex items-center p-2 space-x-2 text-xl rounded hover:bg-blue-600">
+                    <span>🛠️</span> <span>Équipements</span>
+                </a><br>
+                <a href="{{ route('maintenances.index') }}" class="flex items-center p-2 space-x-2 text-xl rounded hover:bg-blue-600">
+                    <span>⚙️</span> <span>Maintenances</span>
+                </a><br>
                 {{-- <a href="{{ route('statistiques.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
                     <span>📊</span> <span>Gestion des statistiques</span>
                 </a> --}}
-                <a href="{{ route('historiques.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
-                    <span>📜</span> <span>Gestion de l'historique</span>
-                </a>
+                <a href="{{ route('historiques.index') }}" class="flex items-center p-2 space-x-2 text-xl rounded hover:bg-blue-600">
+                    <span>📜</span> <span>Historique</span>
+                </a><br>
 
-                <a href="{{ route('rapports.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
-                    <span>📑</span> <span>Gestion des rapports</span>
-                 </a>
-                 <a href="{{ route('users.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
-                    <span>👥</span> <span>Liste des utilisateurs</span>
+                <a href="{{ route('rapports.index') }}" class="flex items-center p-2 space-x-2 text-xl rounded hover:bg-blue-600">
+                    <span>📑</span> <span>Rapports</span>
+                 </a><br>
+                 <a href="{{ route('users.index') }}" class="flex items-center p-2 space-x-2 text-xl rounded hover:bg-blue-600">
+                    <span>👥</span> <span>Utilisateurs</span>
                 </a>
-                <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
-                    <span>🧑‍💼</span> <span>Gestion des employés</span>
-                </a>
-                <a href="{{ route('logiciels.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
-                    <span>🖥️</span> <span>Gestion des logiciels</span>
-                </a>
+                <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-xl rounded hover:bg-blue-600">
+                    <span>🧑</span> <span>Employés</span>
+                </a><br>
+                <a href="{{ route('logiciels.index') }}" class="flex items-center p-2 space-x-2 text-xl rounded hover:bg-blue-600">
+                    <span>🖥️</span> <span>Logiciels</span>
+                </a><br>
 
-                <a href="{{ route('licences.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
-                    <span>🔑</span> <span>Gestion des licences</span>
-                </a>
+                <a href="{{ route('licences.index') }}" class="flex items-center p-2 space-x-2 text-xl rounded hover:bg-blue-600">
+                    <span>🔑</span> <span>Licences</span>
+                </a><br>
             </nav>
         </aside>
 
@@ -58,7 +58,7 @@
                 <div class="overflow-y-auto max-h-[500px] border rounded-lg shadow-md">
 
                     <!-- Affichage des employés -->
-                    <table class="w-full overflow-hidden bg-white rounded-lg shadow-md table-auto" style="font-size:20px">
+                    <table  class="w-full border border-collapse border-gray-300 table-auto" style="font-size:15px">
                         <thead class="sticky top-0 bg-[#67b09d] text-white">
                             <tr class="text-white bg-blue-900">
                                 <th class="px-4 py-2 border">Nom</th>
