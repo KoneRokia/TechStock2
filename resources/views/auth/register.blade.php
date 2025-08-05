@@ -6,7 +6,7 @@
 
     <div class="p-4 rounded-lg" style="background-color:#485ea4">
 
-    <form method="POST" action="{{ route('register') }}"   id="registerForm">
+    <form method="POST" action="{{ route('register', [], true) }}" id="registerForm">
         @csrf
         <div class="text-center">
             <x-input-label for="inscription" :value="__('Inscription')" style="font-size:1.5rem" class="text-white"  />
