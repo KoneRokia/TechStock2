@@ -16,7 +16,7 @@ class UserController extends Controller
 
         // Validation
         $data = $request->validate([
-            'statut' => 'required|in:actif,dexactif,supprimer',
+            'statut' => 'required|in:actif,desactif,supprimer',
         ]);
 
         // Met à jour le statut
@@ -34,22 +34,78 @@ class UserController extends Controller
     }
 
     // Activer un compte utilisateur
-    public function activate($id)
-    {
-        $user = User::findOrFail($id);
-        $user->statut = 'actif';
-        $user->save();
+   public function activate($id)
+{
+    $user = User::findOrFail($id);
+    $user->statut = 'actif';
+    $user->save();
 
-        return back()->with('success', "Le compte de {$user->name} a été activé.");
-    }
+    return redirect()->back()->with('success', "Le compte de {$user->name} a été activé avec succès.");
+}
 
     // Désactiver un compte utilisateur
-    public function deactivate($id)
-    {
-        $user = User::findOrFail($id);
-        $user->statut = 'desactif';
-        $user->save();
+       public function deactivate($id)
+{
+    $user = User::findOrFail($id);
+    $user->statut = 'desactif';
+    $user->save();
 
-        return back()->with('success', "Le compte de {$user->name} a été désactivé.");
+    return redirect()->back()->with('success', "Le compte de {$user->name} a été désactivé.");
+}
+
+
+        public function create()
+    {
+        // Seulement accessible aux admins
+        if (auth()->user()->role !== 'admin') {
+            abort(403, 'Accès non autorisé.');
+        }
+        return view('users.create');
     }
+
+    public function store(Request $request)
+{
+    if (auth()->user()->role !== 'admin') {
+        abort(403, 'Accès non autorisé.');
+    }
+
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'prenom' => 'required|string|max:255',
+        'email' => 'required|email|unique:users',
+        'password' => 'required|string|min:6|confirmed',
+        'role' => 'required|in:admin,technicien,utilisateur,editeur',
+        // Pas besoin de valider 'statut' car tu le forces dans le code
+    ]);
+
+    // Si c'est le premier admin, il est actif, sinon désactivé
+    if ($validated['role'] === 'admin' && User::where('role', 'admin')->count() === 0) {
+        $validated['statut'] = 'actif';
+    } else {
+        $validated['statut'] = 'desactif';
+    }
+
+    // Hashage du mot de passe
+    $validated['password'] = bcrypt($validated['password']);
+
+    // Création de l'utilisateur avec les données validées
+    User::create($validated);
+
+    return redirect()->route('users.index')->with('success', 'Utilisateur ajouté avec succès.');
+}
+
+// Désactiver son propre compte
+public function deactivateSelf(Request $request)
+{
+    $user = auth()->user();
+    $user->statut = 'desactif';
+    $user->save();
+
+    auth()->logout();
+
+    return redirect()->route('login')->with('success', 'Votre compte a été désactivé.');
+}
+
+
+
 }

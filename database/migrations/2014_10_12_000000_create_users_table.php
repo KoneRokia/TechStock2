@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('password')->nullable(false);
             $table->enum('role', ['admin', 'technicien', 'utilisateur','editeur'])->nullable(false);
             $table->string('photo_util')->nullable();
-            $table->enum('statut', ['actif', 'desactif', 'supprimer'])->default('actif');
+            $table->enum('statut', ['actif', 'desactif', 'supprimer'])->default('desactif');
             $table->rememberToken();
             $table->timestamps();
         });

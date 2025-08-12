@@ -120,14 +120,21 @@ Route::middleware(['auth', 'check.account.status'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::patch('/profile/delete', [ProfileController::class, 'softDelete'])->name('profile.softDelete');
+ Route::put('/profile/deactivate', [UserController::class, 'deactivateSelf'])->name('profile.deactivate');
 
-    Route::middleware(['auth'])->group(function () {
-        Route::put('/profile/deactivate', [ProfileController::class, 'deactivate'])->name('profile.deactivate');
-    });
+    // Route::middleware(['auth'])->group(function () {
+    //     Route::put('/profile/deactivate', [ProfileController::class, 'deactivate'])->name('profile.deactivate');
+    // });
 
     Route::middleware(['auth', 'admin'])->group(function () {
         Route::put('/profile/{id}/activate', [ProfileController::class, 'activate'])->name('profile.activate');
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
+        Route::post('/users', [UserController::class, 'store'])->name('users.store');
+        Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+        Route::put('/users/{id}/activate', [UserController::class, 'activate'])->name('users.activate');
+        Route::put('/users/{id}/deactivate', [UserController::class, 'deactivate'])->name('users.deactivate');
+
+
 
     });
 

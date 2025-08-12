@@ -6,56 +6,57 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function create()
     {
         return view('auth.register');
     }
 
     /**
      * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'prenom' => ['required', 'string', 'max:255'],
-            'role' => ['required', 'string', 'in:admin,technicien,editeur,utilisateur'], // Validation du rôle
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'role' => ['required', 'in:admin,technicien,utilisateur,editeur'],
         ]);
 
+        // Définir le statut par défaut
+        $statut = 'desactif';
+
+        // Si c'est un admin et qu'il n'existe encore aucun admin => actif
+        if ($request->role === 'admin') {
+            $adminCount = User::where('role', 'admin')->count();
+            if ($adminCount === 0) {
+                $statut = 'actif';
+            }
+        }
+
+        // Création de l'utilisateur
         $user = User::create([
             'name' => $request->name,
-            'prenom'=>$request->prenom,
-            'role'=>$request->role,
+            'prenom' => $request->prenom,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $request->role,
+            'statut' => $statut,
         ]);
 
         event(new Registered($user));
 
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
-
-
-        // $request->validate([
-        //     'prenom' => 'required|string|max:255',
-        //     'role' => 'required|in:admin,technicien,editeur,utilisateur',
-        // ]);
+        // Redirection vers login sans connexion automatique
+        return redirect()->route('login')->with('success', 'Compte créé avec succès. Veuillez vous connecter.');
     }
 }

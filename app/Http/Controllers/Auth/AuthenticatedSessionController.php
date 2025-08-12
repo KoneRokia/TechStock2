@@ -25,7 +25,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        // On force la désactivation de "remember me"
+        Auth::attempt(
+            $request->only('email', 'password'),
+            false // NE PAS se souvenir de l'utilisateur
+        );
 
         $request->session()->regenerate();
 
@@ -43,6 +47,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        // Rediriger vers la page login après déconnexion
+        return redirect()->route('login');
     }
 }
