@@ -27,12 +27,12 @@ RUN composer install
 # Exécute npm run dev
 #RUN npm run build
 
-#RUN php artisan cache:clear
-#RUN php artisan route:cache
-#RUN php artisan config:cache
+RUN php artisan cache:clear
+RUN php artisan route:cache
+RUN php artisan config:cache
 RUN php artisan view:clear
 #RUN php artisan migrate:refresh --seed
-#RUN php artisan log-viewer:publish
+RUN php artisan log-viewer:publish
 
 EXPOSE 80
 
