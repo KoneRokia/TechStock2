@@ -62,5 +62,11 @@
 });
 
 </script>
+        
+    @if(session('error'))
+        <div class="mb-4 p-3 bg-red-100 text-red-700 border border-red-300 rounded">
+            {{ session('error') }}
+        </div>
+    @endif
 
 </x-guest-layout>

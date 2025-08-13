@@ -106,7 +106,8 @@ Route::get('/licences/check-expiration', [LicenceController::class, 'checkLicenc
 
 Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
 Route::get('/notifications', [NotificationController::class, 'showNotifications'])->name('notifications.index');
-Route::get('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+// Route::get('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+Route::put('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');

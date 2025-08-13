@@ -38,15 +38,12 @@ $admin->notify(new LicenceRenewalNotification($license));
 
 
         
-        public function markAsRead($notificationId)
+            public function markAsRead($id)
         {
-            $notification = auth()->user()->notifications->find($notificationId);
+            $notification = auth()->user()->notifications()->findOrFail($id);
+            $notification->markAsRead();
 
-            if ($notification) {
-                $notification->markAsRead(); // Marque la notification comme lue
-            }
-
-            return redirect()->route('notifications.index'); // Redirige vers la page des notifications
+            return redirect()->back()->with('success', 'Notification marquée comme lue.');
         }
 
 

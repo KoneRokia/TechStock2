@@ -40,7 +40,7 @@ class UserController extends Controller
     $user->statut = 'actif';
     $user->save();
 
-    return redirect()->back()->with('success', "Le compte de {$user->name} a été activé avec succès.");
+    return redirect()->route('users.index')->with('success', "Le compte de {$user->name} a été activé avec succès.");
 }
 
     // Désactiver un compte utilisateur
@@ -50,7 +50,7 @@ class UserController extends Controller
     $user->statut = 'desactif';
     $user->save();
 
-    return redirect()->back()->with('success', "Le compte de {$user->name} a été désactivé.");
+    return redirect()->route('users.index')->with('success', "Le compte de {$user->name} a été désactivé.");
 }
 
 

@@ -81,14 +81,14 @@
                              @endif
                         <td class="p-2 border">
                     @if ($user->statut === 'actif')
-                        <form action="{{ route('profile.deactivate', $user->id) }}" method="POST">
+                        <form action="{{ route('users.deactivate', $user->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <button type="submit" class="px-3 py-1 text-white bg-red-500 rounded">Désactiver</button>
                         </form>
                     @else
                         @if(auth()->user()->role === 'admin')
-                            <form action="{{ route('profile.activate', $user->id) }}" method="POST">
+                            <form action="{{ route('users.activate', $user->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <button type="submit" class="px-3 py-1 text-white bg-blue-500 rounded">Activer</button>

@@ -7,13 +7,21 @@ use App\Models\Employe;
 use App\Models\Maintenance;
 use App\Models\Rapport;
 use App\Models\User;
-use App\Models\Licence;
- use App\Models\Logiciel;
+use App\Models\Licence; use App\Models\Logiciel;
+ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
+         $user = Auth::user();
+
+        // Vérifie si l'utilisateur est désactivé
+        if ($user->statut === 'desactif') {
+            Auth::logout();
+            return redirect()->route('login')->with('error', 'Votre compte est désactivé. Veuillez contacter l’administrateur.');
+        }
+
         // Total employés
         $totalEmployes = Employe::count();
 
