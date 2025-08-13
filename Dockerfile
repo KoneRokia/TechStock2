@@ -32,7 +32,7 @@ RUN php artisan cache:clear
 RUN php artisan config:cache
 RUN php artisan view:clear
 #RUN php artisan migrate:refresh --seed
-RUN php artisan log-viewer:publish
+#RUN php artisan log-viewer:publish
 
 EXPOSE 80
 
