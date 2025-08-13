@@ -1,7 +1,8 @@
 <x-guest-layout>
     <div class="flex items-center justify-center ">
         <x-input-label for="itechstock" :value="__('iTechStock')" style="font-size:2.2rem ; font-family:arial,sans-serif. font-bold ; color:#2d3061"  />
-        <img src="/build/assets/logoilimiGroup.png" alt="Logo" class="w-12 h-12" style="width: 130px; heith:130px; margin-left:90px"> <br>
+        <img src="/build/assets/logoilimiGroup.jpg" alt="Logo" class="
+        h-12" style="heith:130px; margin-left:90px"> <br>
     </div> <br> 
 
     <div class="p-4 rounded-lg" style="background-color:#485ea4">
