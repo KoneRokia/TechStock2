@@ -4,7 +4,7 @@
 
       <!-- Logo + Tableau de bord -->
       <a href="{{ route('dashboard') }}" class="flex items-center space-x-4 sm:space-x-20">
-        <img src="/build/assets/logoilimiGroup.jpg" alt="Logo" class="w-16 sm:w-24 md:w-32 h-auto" />
+        <img src="{{ asset('images/logoilimiGroup.jpg') }}" alt="Logo" class="w-16 sm:w-24 md:w-32 h-auto" />
         <h1 class="hidden sm:block text-lg font-bold text-black cursor-pointer">TABLEAU DE BORD</h1>
       </a>
 
