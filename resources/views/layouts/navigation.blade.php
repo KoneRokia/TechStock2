@@ -2,11 +2,11 @@
   <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-16 items-center">
 
-      <!-- Logo + Tableau de bord -->
-      <a href="{{ route('dashboard') }}" class="flex items-center space-x-4 sm:space-x-20">
-        <img src="{{ asset('images/logoilimiGroup.jpg') }}" alt="Logo" class="h-10 sm:h-10 md:h-10 " />
-        <h1 class="hidden sm:block text-lg font-bold text-black cursor-pointer">TABLEAU DE BORD</h1>
-      </a>
+   <a href="{{ route('dashboard') }}" class="flex items-center space-x-4 sm:space-x-20">
+    <img src="{{ asset('images/logoilimiGroup.jpg') }}" alt="Logo" class="w-20 h-10 object-contain" />
+    <h1 class="hidden sm:block text-lg font-bold text-black cursor-pointer">TABLEAU DE BORD</h1>
+</a>
+
 
       <!-- Notifications (desktop) -->
       <div class="hidden sm:flex items-center space-x-6">

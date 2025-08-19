@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="max-w-4xl mx-auto px-4 py-6">
+    <div >
         <h3 class="text-2xl font-bold mb-6 text-gray-800 f:text-gray-200">Notifications</h3>
 
         @if($notifications->count())
