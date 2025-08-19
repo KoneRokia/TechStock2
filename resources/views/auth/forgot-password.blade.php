@@ -6,7 +6,7 @@
     <br>
     <div  class="p-4 rounded-lg" style="background-color:#485ea4">
 
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400" style="color: white">
+    <div class="mb-4 text-sm text-gray-600" style="color: white">
         {{ __('Vous avez oublié votre mot de passe ? Aucun problème. Communiquez-nous simplement votre adresse e-mail et nous vous enverrons par e-mail un lien de réinitialisation de mot de passe qui vous permettra d\'en choisir un nouveau.') }}
     </div>
 

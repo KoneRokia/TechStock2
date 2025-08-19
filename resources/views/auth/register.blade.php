@@ -1,6 +1,6 @@
 <x-guest-layout>
     <div class="flex items-center justify-center ">
-        <x-input-label for="itechstock" :value="__('iTechStock')" style="font-size:2.2rem ; font-family:arial,sans-serif. font-bold ; color:#2d3061"  />
+        <x-input-label for="itechstock" :value="__('iTechStock')" style="font-size:2.2rem ; font-family:arial,sans-serif. font-bold "  />
         <img src="{{ asset('images/logoilimiGroup.jpg') }}" alt="Logo" class="h-12" style="heith:130px; margin-left:90px"> <br>
     </div> <br> 
 
@@ -65,7 +65,7 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <a class="text-sm underline rounded-md text-white-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login')  }}" style="color:#f3f4f8">
+            <a class="text-sm underline rounded-md text-white-600  hover:text-gray-900  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login')  }}" style="color:#f3f4f8">
                 {{ __('Vous avez déjà un Compte?') }}
             </a>
 

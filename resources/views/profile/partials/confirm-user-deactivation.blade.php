@@ -1,10 +1,10 @@
 <section class="space-y-6">
     <header>
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100" style="font-size:25px">
+        <h2 class="text-lg font-medium text-gray-900 f:text-gray-100" style="font-size:25px">
             {{ __('Désactiver le compte') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+        <p class="mt-1 text-sm text-gray-600 f:text-gray-400">
             {{ __('Une fois votre compte désactivé, vous ne pourrez plus y accéder. Avant de désactiver votre compte, veuillez télécharger toutes les données ou informations que vous souhaitez conserver.') }}
         </p>
     </header>
@@ -23,11 +23,11 @@
             @csrf
             @method('put') <!-- Utilisez la méthode PUT pour une mise à jour -->
 
-            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+            <h2 class="text-lg font-medium text-gray-900 f:text-gray-100">
                 {{ __('Êtes-vous sûr de vouloir désactiver votre compte ?') }}
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+            <p class="mt-1 text-sm text-gray-600 f:text-gray-400">
                 {{ __('Une fois votre compte désactivé, vous ne pourrez plus y accéder. Veuillez saisir votre mot de passe pour confirmer que vous souhaitez désactiver votre compte.') }}
             </p>
 

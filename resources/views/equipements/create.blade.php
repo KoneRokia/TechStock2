@@ -3,42 +3,7 @@
 
     <div class="flex">
         <!-- Sidebar -->
-        <aside class="w-64 min-h-screen p-6 text-white bg-blue-900 shadow-lg" style="margin-top:-1px">
-            <nav class="space-y-4">
-                <a href="{{ route('dashboard') }}" class="flex items-center p-2 space-x-2 text-xl hover:bg-blue-600" >
-                    <span>🏠</span> <span>Tableau de bord</span>
-                </a><br>
-                <a href="{{ route('equipements.index') }}" class="flex items-center p-2 space-x-2 text-xl rounded hover:bg-blue-600">
-                    <span>🛠️</span> <span>Équipements</span>
-                </a><br>
-                <a href="{{ route('maintenances.index') }}" class="flex items-center p-2 space-x-2 text-xl rounded hover:bg-blue-600">
-                    <span>⚙️</span> <span>Maintenances</span>
-                </a><br>
-                {{-- <a href="{{ route('statistiques.index') }}" class="flex items-center p-2 space-x-2 text-2xl rounded hover:bg-blue-600">
-                    <span>📊</span> <span>Gestion des statistiques</span>
-                </a> --}}
-                <a href="{{ route('historiques.index') }}" class="flex items-center p-2 space-x-2 text-xl rounded hover:bg-blue-600">
-                    <span>📜</span> <span>Historique</span>
-                </a><br>
-
-                <a href="{{ route('rapports.index') }}" class="flex items-center p-2 space-x-2 text-xl rounded hover:bg-blue-600">
-                    <span>📑</span> <span>Rapports</span>
-                 </a><br>
-                 <a href="{{ route('users.index') }}" class="flex items-center p-2 space-x-2 text-xl rounded hover:bg-blue-600">
-                    <span>👥</span> <span>Utilisateurs</span>
-                </a>
-                <a href="{{ route('employes.index') }}" class="flex items-center p-2 space-x-2 text-xl rounded hover:bg-blue-600">
-                    <span>🧑</span> <span>Employés</span>
-                </a><br>
-                <a href="{{ route('logiciels.index') }}" class="flex items-center p-2 space-x-2 text-xl rounded hover:bg-blue-600">
-                    <span>🖥️</span> <span>Logiciels</span>
-                </a><br>
-
-                <a href="{{ route('licences.index') }}" class="flex items-center p-2 space-x-2 text-xl rounded hover:bg-blue-600">
-                    <span>🔑</span> <span>Licences</span>
-                </a><br>
-            </nav>
-        </aside>
+        @include('layouts.sidebar')
         <!-- Main Content -->
         <main class="flex-1 p-10 bg-gray-100" >
             <!-- Ajouter un équipement Section -->

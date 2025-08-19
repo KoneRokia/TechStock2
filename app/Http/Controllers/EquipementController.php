@@ -151,7 +151,7 @@ public function update(Request $request, $id)
         }
 
         // Enregistrer la nouvelle photo
-        $photoPath = $request->file('photo_equip')->store('photos', 'public');
+        $photoPath = $request->file('photo_equip')->store('photos_equipements', 'public');
     } else {
         // Si aucune nouvelle photo, garder l'ancienne
         $photoPath = $equipement->photo_equip;

@@ -1,20 +1,20 @@
 <x-app-layout>
     <div class="max-w-4xl mx-auto px-4 py-6">
-        <h3 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200">Notifications</h3>
+        <h3 class="text-2xl font-bold mb-6 text-gray-800 f:text-gray-200">Notifications</h3>
 
         @if($notifications->count())
             <div class="space-y-4">
                 @foreach($notifications as $notification)
-                    <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-200 flex justify-between items-start">
+                    <div class="bg-white f:bg-gray-800 shadow rounded-lg p-4 hover:bg-gray-50 f:hover:bg-gray-700 transition duration-200 flex justify-between items-start">
                         <div>
                             <div class="flex items-center space-x-2">
-                                <strong class="text-lg text-gray-900 dark:text-gray-100">{{ $notification->data['title'] }}</strong>
+                                <strong class="text-lg text-gray-900 f:text-gray-100">{{ $notification->data['title'] }}</strong>
                                 @if(!$notification->read_at)
                                     <span class="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">Non lu</span>
                                 @endif
                             </div>
-                            <p class="mt-2 text-gray-700 dark:text-gray-300">{{ $notification->data['message'] }}</p>
-                            <small class="text-gray-500 dark:text-gray-400">{{ $notification->created_at->diffForHumans() }}</small>
+                            <p class="mt-2 text-gray-700 f:text-gray-300">{{ $notification->data['message'] }}</p>
+                            <small class="text-gray-500 f:text-gray-400">{{ $notification->created_at->diffForHumans() }}</small>
                         </div>
                         <div class="ml-4">
                             @if(!$notification->read_at)
@@ -32,7 +32,7 @@
             </div>
         @else
             <div class="text-center py-10">
-                <p class="text-gray-500 dark:text-gray-400 text-lg">Aucune notification pour le moment.</p>
+                <p class="text-gray-500 f:text-gray-400 text-lg">Aucune notification pour le moment.</p>
             </div>
         @endif
     </div>
