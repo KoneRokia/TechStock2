@@ -1,18 +1,18 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 ">
-  <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+<nav x-data="{ open: false }" class="bg-blue-900 border-b border-gray-100 p-6 ">
+  <div class="max-w-8xl mx-auto  lg:px-8">
     <div class="flex justify-between h-16 items-center">
 
    <a href="{{ route('dashboard') }}" class="flex items-center space-x-4 sm:space-x-20">
-    <img src="{{ asset('images/logoilimiGroup.jpg') }}" alt="Logo" class="w-20 h-10 object-contain" />
-    <h1 class="hidden sm:block text-lg font-bold text-black cursor-pointer">TABLEAU DE BORD</h1>
+    <img src="{{ asset('images/iTechSTOCK 1.png') }}" alt="Logo" class="w-20 h-10 object-contain" />
+    <h1 class="hidden sm:block text-lg font-bold text-white cursor-pointer">TABLEAU DE BORD</h1>
 </a>
 
 
       <!-- Notifications (desktop) -->
       <div class="hidden sm:flex items-center space-x-6">
-        <a href="{{ route('notifications.index') }}" class="relative flex items-center text-gray-700 hover:text-gray-900">
+        <a href="{{ route('notifications.index') }}" class="relative flex items-center text-white hover:text-gray-900">
           <i class="fa fa-bell text-xl"></i>
-          <span class="ml-1 hidden sm:inline">Notifications</span>
+          <!-- <span class="ml-1 hidden sm:inline">Notifications</span> -->
           @if(auth()->user()->unreadNotifications->count() > 0)
             <span class="absolute top-0 right-0 -mt-1 -mr-2 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-600 rounded-full">
               {{ auth()->user()->unreadNotifications->count() }}
@@ -23,7 +23,7 @@
         <!-- Profile Dropdown -->
         <x-dropdown align="right" width="48">
           <x-slot name="trigger">
-            <button class="flex items-center text-sm font-medium text-gray-500 f:text-gray-400 hover:text-gray-700 f:hover:text-gray-300 focus:outline-none">
+            <button class="flex items-center text-sm font-medium text-white f:text-gray-400 hover:text-white f:hover:text-gray-300 focus:outline-none">
               <div>{{ Auth::user()->name }}</div>
               <svg class="ml-1 w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>

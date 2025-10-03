@@ -12,46 +12,48 @@
         @include('layouts.sidebar')
 
         <!-- Main Content -->
-        <main class="flex-1 p-10 bg-gray-100">
+        <main class="flex-1 p-10 bg-[#F3F3F3]">
             <div class="container mx-auto">
                 <!-- Ajouter un équipement Section -->
                 <h1 class="mb-4 text-2xl font-semibold">Liste des équipements</h1> <br>
 
                 @if(auth()->user()->role === 'admin' || auth()->user()->role === 'editeur')
-                <a href="{{ route('equipements.create') }}" class="p-2 mb-4 text-white bg-blue-600 rounded">Ajouter un équipement</a>
+                <a href="{{ route('equipements.create') }}" class="p-2 mb-4 text-white bg-[#3A5DA8] rounded-lg">Ajouter un équipement</a>
                 @endif <br> <br>
 
 
-                <div class="flex items-center space-x-2">
-                    <input type="text" id="searchNumeroSerie" placeholder="Rechercher par numéro de série" class="p-2 border rounded"   value="{{ request()->input('numero_serie') }}">
-                    <button id="btnSearch" class="p-2 text-white bg-blue-600 rounded">Rechercher</button>
-                </div> <br>
+                <div class="relative w-[400px]">
+                    <input type="text" id="searchNumeroSerie" placeholder="Rechercher par numéro de série" value="{{ request()->input('numero_serie') }}"  class="w-full pl-10 pr-4 py-2 border rounded-lg border-[#3A5DA8] focus:outline-none focus:ring-2 focus:ring-[#3A5DA8]"
+>
+                <button id="btnSearch" class="absolute right-3 top-1/2 -translate-y-1/2">
+                        <img src="{{ asset('images/Frame 5.png') }}" alt="Recherche" class="w-3 h-4">
+                 </button>               
+                 </div> <br>
 
 
                 <div id="equipementsList">
                     <!-- La liste des équipements sera affichée ici -->
                 </div>
 
-                <div class="overflow-y-auto max-h-[500px] border rounded-lg shadow-md">
-                <table  class="w-full border border-collapse border-gray-300 table-auto" style="font-size:15px">
-                    <thead class="sticky top-0 bg-[#67b09d] text-white">
-                        <tr class="text-white bg-blue-900">
-                        </th>
-                             <th class="px-4 py-2 border">Nom</th>
-                            <th class="px-4 py-2 border">Type</th>
-                            <th class="px-4 py-2 border">Date d'achat</th>
-                            <th class="px-4 py-2 border">Caractéristiques</th>
-                            <th class="px-4 py-2 border">Coût</th>
-                            {{-- <th class="px-4 py-2 border">Utilisateur</th> --}}
-                            <th class="px-4 py-2 border">Photo</th>
-                            <th class="px-4 py-2 border">Actions</th> <!-- Nouvelle colonne pour les actions -->
+                <div class="overflow-y-auto max-h-[500px] border rounded-lg">
+                <table  class="w-full border border-collapse table-auto rounded-lg bg-[#D9D9D9]" style="font-size:15px">
+                    <thead class="sticky top-0 bg-[#D9D9D9] text-white">
+                        <tr class="text-[#585858] bg-[#D9D9D9]">
+                             <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Nom</th>
+                            <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Type</th>
+                            <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Date d'achat</th>
+                            <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Caractéristiques</th>
+                            <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Coût</th>
+                            {{-- <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Utilisateur</th> --}}
+                            <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Photo</th>
+                            <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Actions</th> 
                         </tr>
                     </thead>
                     <tbody id="equipementsTableBody">
                         @foreach($equipements as $equipement)
-                            <tr class="border-b hover:bg-gray-200">
-                                <td class="px-4 py-2 border">{{ $equipement->nom }}</td>
-                                <td class="px-4 py-2 border">{{ $equipement->type }}</td>
+                            <tr class="border-b odd:bg-[#F3F3F3] even:bg-[#EBEBEB] text-[#585858]">
+                                <td class="px-2 py-2 border">{{ $equipement->nom }}</td>
+                                <td class="px-2 py-2 border">{{ $equipement->type }}</td>
                                 <td class="px-4 py-2 border">{{ $equipement->date_achat }}</td>
                                 <td class="px-4 py-2 border">{{ $equipement->caracteristique }}</td>
                                 <td class="px-4 py-2 border">{{ $equipement->cout }}</td>
@@ -59,13 +61,16 @@
                                 <td class="px-4 py-2 border">
                                     <img src="{{ asset('storage/' . $equipement->photo_equip) }}" 
                                         alt="Photo de l'équipement" 
-                                        class="object-cover w-16 h-16 rounded">
+                                        class=" w-7 h-7 rounded">
                                 </td>
 
 
                                 <td class="px-4 py-2 text-center border">
                                     <!-- Bouton Voir -->
-                                    <a href="{{ route('equipements.show', $equipement) }}" class="text-green-500">👁️</a>
+                                    <a href="{{ route('equipements.show', $equipement) }}" class="text-green-500">
+                                            <img src="{{ asset('images/Group 8.png') }}" alt="Voir" class="w-5 h-5 inline-block">
+
+                                    </a>
 
                                     <!-- Bouton Modifier pour l'admin et l'éditeur uniquement -->
                                     <a href="{{ route('equipements.edit', $equipement->id) }}"
@@ -74,7 +79,7 @@
                                        @if(auth()->user()->role !== 'admin' && auth()->user()->role !== 'editeur')
                                            onclick="event.preventDefault(); alert('Seuls l\'admin et l\'éditeur peuvent modifier cet équipement.');"
                                        @endif>
-                                        <i class="fas fa-edit"></i>
+                                            <img src="{{ asset('images/Group 7.png') }}" alt="Modifier" class="w-5 h-5 inline-block">
                                     </a>
 
                                     <!-- Formulaire Supprimer pour l'admin uniquement -->
@@ -86,13 +91,13 @@
                                         @method('PUT') <!-- Utilisation de PUT car ta route attend PUT -->
 
                                         <button type="submit"
-                                                class="ml-4 text-red-600 hover:text-red-800"
+                                                class=" text-red-600 hover:text-red-800"
                                                 title="Supprimer"
                                                 style="border: none; background: none;"
                                                 @if(auth()->user()->role !== 'admin')
                                                     onclick="event.preventDefault(); alert('Seul l\'admin peut supprimer cet équipement.');"
                                                 @endif>
-                                            <i class="fas fa-trash-alt"></i>
+                                            <img src="{{ asset('images/Group 10.png') }}" alt="Supprimer" class="w-5 h-5 inline-block">
                                         </button>
                                     </form>
                                 </td>
@@ -153,7 +158,11 @@
                 </script>
 
 
-            </div>
+            </div> 
+            <!-- <br> <br>
+            <div class="flex justify-center items-center">
+             <img src="{{ asset('images/logoilimiGroup.png') }}" alt="Logo" class="h-6">
+            </div> -->
         </main>
 
     </div>

@@ -7,6 +7,9 @@
 
         <title>{{ config('app.name', 'iTechStock') }}</title>
 
+        <!-- Favicon (image) -->
+        <link rel="icon" href="{{ asset('images/logoilimiGroup.jpg') }}" type="image/jpg" sizes="180x180">
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -15,7 +18,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 f:bg-gray-900">
+        <div class="min-h-screen bg-gray-100 f:bg-gray-900 rounded-lg">
             @include('layouts.navigation')
 
             <!-- Page Heading -->

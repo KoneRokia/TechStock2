@@ -1,20 +1,18 @@
 <x-guest-layout>
-    <div class="flex items-center justify-center ">
-        <x-input-label for="itechstock" :value="__('iTechStock')" style="font-size:2.2rem ; font-family:arial,sans-serif. font-bold "  />
-        <img src="{{ asset('images/logoilimiGroup.jpg') }}" alt="Logo" class="h-12" style="heith:130px; margin-left:90px"> <br>
-    </div> <br> 
+    <div class=" ">
+        <img src="{{ asset('images/iTechSTOCK.png') }}" alt="Logo" class="h-12" style="margin-left:10px">
+    </div>
 
-    <div class="p-4 rounded-lg" style="background-color:#485ea4">
 
     <form method="POST" action="{{ route('register', [], true) }}" id="registerForm">
         @csrf
-        <div class="text-center">
-            <x-input-label for="inscription" :value="__('Inscription')" style="font-size:1.5rem" class="text-white"  />
+        <div class="text-center text-[#3A5DA8]">
+            <x-input-label for="inscription" :value="__('Inscription')" style="font-size: 20px;; color: #3A5DA8;" class=" text-right"  />
 
-        </div> <br><br>
+        </div>
 
         <!-- Name -->
-        <div>
+        <div class=>
             <x-text-input id="name" class="block w-full mt-1" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder="Nom" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
@@ -65,17 +63,24 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <a class="text-sm underline rounded-md text-white-600  hover:text-gray-900  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login')  }}" style="color:#f3f4f8">
-                {{ __('Vous avez déjà un Compte?') }}
+            <a class="text-sm underline rounded-md text-white-600  hover:text-gray-900  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login')  }}" style="color: #3A5DA8;">
+             {{ __('Vous avez déjà un Compte?') }}
             </a>
 
-            <x-primary-button id="registerButton" class="ms-4" style="background-color:#f3f4f8 ; color:black">
+            <x-primary-button id="registerButton" class="ms-4" style="background-color: #3A5DA8;">
                 {{ __('S\'inscrire') }}
             </x-primary-button>
+            </div>
 
-            <div id="loading" style="display:none; color: black; font-size: 14px;">Chargement...</div>
+            <div id="loading" style="display:none; color: black; font-size: 14px;"></div>
+
+             <div class="flex justify-center mt-6   bottom-10">
+                <img src="{{ asset('images/logoilimiGroup.png') }}" alt="Logo" class="h-7">
+            </div>
+            
 
     </form>
+   
 
     <script>
 
@@ -105,4 +110,3 @@ document.getElementById("registerForm").addEventListener("submit", function(even
 
 </div>
 </x-guest-layout>
-

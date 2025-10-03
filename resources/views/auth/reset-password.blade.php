@@ -1,8 +1,12 @@
 <x-guest-layout>
-    <div class="flex items-center justify-center ">
-        <x-input-label for="itechstock" :value="__('iTechStock')" style="font-size:2.2rem ; font-family:arial,sans-serif. font-bold ; color:#2d3061" class=""  />
-        <img src="{{ asset('images/logoilimiGroup.jpg') }}" alt="Logo" class="h-12" style="heith:130px; margin-left:90px">
-    </div>
+   <div class=" ">
+        <img src="{{ asset('images/iTechSTOCK.png') }}" alt="Logo" class="h-12" style=" margin-left:10px">
+    </div> <br>
+
+         <div class="text-center text-[#3A5DA8]">
+            <x-input-label for="reinitialisation de mot de passe" :value="__('Rénitialisation du mot de passe')" style="font-size: 16px; color: #3A5DA8;" class=" text-right"  />
+
+        </div>
     <form method="POST" action="{{ route('password.store') }}"  id="resetPasswordForm">
         @csrf
 
@@ -35,12 +39,16 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <x-primary-button id="resetPasswordButton">
+            <x-primary-button id="resetPasswordButton" style="background-color:#3A5DA8">
                 {{ __('Réinitialiser le mot de passe') }}
             </x-primary-button>
         </div>
 
         <div id="loading" style="display:none; color: black; font-size: 14px;">Chargement...</div>
+
+        <div class="flex justify-center mt-6   bottom-10">
+                <img src="{{ asset('images/logoilimiGroup.png') }}" alt="Logo" class="h-7">
+        </div>
     </form>
 
     <script>

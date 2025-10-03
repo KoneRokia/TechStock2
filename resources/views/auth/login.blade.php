@@ -1,18 +1,17 @@
 <x-guest-layout>
-    <div class="flex items-center justify-center ">
-        <x-input-label for="itechstock" :value="__('iTechStock')" style="font-size:2.2rem ; font-family:arial,sans-serif. font-bold ; color:#2d3061" class=""  />
-        <img src="{{ asset('images/logoilimiGroup.jpg') }}" alt="Logo" class="h-12" style="heith:130px; margin-left:90px">
+    <div class=" ">
+        <img src="{{ asset('images/iTechSTOCK.png') }}" alt="Logo" class="h-12" style=" margin-left:10px">
     </div>
-    <br>
-    <div class="p-4 rounded-lg" style="background-color:#485ea4		 ">
+
+    <div class="p-4 rounded-lg">
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
  
     <form method="POST" action="{{ route('login') }}"  id="loginForm">
         @csrf
-        <div class="text-center">
-            <x-input-label for="connexion" :value="__('Connexion')" style="font-size:1.5rem" class="text-white"  />
+        <div class="text-center text-[#3A5DA8]">
+            <x-input-label for="connexion" :value="__('Connexion')" style="font-size: 20px; color: #3A5DA8;" class=" text-right"  />
 
         </div>
         <!-- Email Address -->
@@ -23,7 +22,7 @@
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
+        <div>
             <x-input-label for="password" :value="__('Mot de passe')" class="text-white" />
 
             <x-text-input id="password" class="block mt-1 w-full"
@@ -38,16 +37,20 @@
 
         <div class="flex items-center justify-end mt-4">
             @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600  hover:text-gray-900  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 " href="{{ route('password.request') }}" style="color:white">
-                    {{ __('Mot de passe oublié?') }}
+                <a class="underline text-sm text-gray-600  hover:text-gray-900  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 " href="{{ route('password.request') }}" style="color: #3A5DA8;">
+                  {{ __('Mot de passe oublié?') }}
                 </a>
             @endif
 
-            <x-primary-button id="loginButton" class="ms-4" style="background-color:#f3f4f8 ; color:black">
-                {{ __('Se connecter') }}
+            <x-primary-button id="loginButton" style="background-color:#3A5DA8 ; color:black" class="ms-4 ">
+             <span class="text-white"> {{ __('Se connecter') }}</span>   
             </x-primary-button>
 
-            <div id="loading" style="display:none; color: black; font-size: 14px;">Chargement...</div>
+            <div id="loading" style="display:none; color: black; font-size: 14px;"></div>
+        </div>
+
+        <div class="flex justify-center mt-6   bottom-10">
+                <img src="{{ asset('images/logoilimiGroup.png') }}" alt="Logo" class="h-7">
         </div>
     </form>
 <!--Nom de l'application en bas-->

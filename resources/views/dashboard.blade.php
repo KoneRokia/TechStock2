@@ -13,82 +13,175 @@
         <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
     </head>
 
-    <body class="bg-gray-100">
+    <body class="bg-gray-100 ">
 
         <div class="flex">
             <!-- Sidebar -->
            
         @include('layouts.sidebar')
 
-        <!-- Main Content -->
-        <main class="flex-1 p-10 bg-gray-100">
-            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                <div class="p-6 bg-white rounded-lg shadow-md">
-                    <h3 class="text-lg font-semibold text-gray-700"><i class="text-blue-500 fas fa-user"></i> Total Employés</h3>
-                    <p class="text-3xl font-bold text-blue-500">{{ $totalEmployes ?? '' }}</p>
-                    {{-- <p>{{ $totalEmployes ?? 'Donnée non disponible' }}</p> --}}
-                </div>
-                <div class="p-6 bg-white rounded-lg shadow-md">
-                    <h3 class="text-lg font-semibold text-gray-700"><i class="text-blue-500 fas fa-server "></i> Total Équipements</h3>
-                    <p class="text-3xl font-bold text-blue-500">{{ $totalEquipements  ?? ''}}</p>
-                </div>
-                <div class="p-6 bg-white rounded-lg shadow-md">
-                    <h3 class="text-lg font-semibold text-gray-700"><i class="text-green-500 fas fa-check-circle"></i> Équipements Actifs</h3>
-                    <p class="text-3xl font-bold text-green-500">{{ $equipementsActifs ?? '' }}</p>
-                </div>
-                <div class="p-6 bg-white rounded-lg shadow-md">
-                    <h3 class="text-lg font-semibold text-gray-700"><i class="text-red-500 fas fa-exclamation-triangle"></i> Équipements en Panne</h3>
-                    <p class="text-3xl font-bold text-red-500">{{ $equipementsEnPanne ?? '' }}</p>
-                </div>
-                <div class="p-6 bg-white rounded-lg shadow-md">
-                    <h3 class="text-lg font-semibold text-gray-700"><i class="text-yellow-500 fas fa-ban"></i> Équipements Hors Service</h3>
-                    <p class="text-3xl font-bold text-yellow-500">{{ $equipementsHorsService ?? ''}}</p>
-                </div>
-                <div class="p-6 bg-white rounded-lg shadow-md">
-                    <h3 class="text-lg font-semibold text-gray-700"><i class="text-blue-500 fas fa-tools"></i> Total Maintenances</h3>
-                    <p class="text-3xl font-bold text-blue-500">{{ $totalMaintenances ?? ''}}</p>
-                </div>
-                <div class="p-6 bg-white rounded-lg shadow-md">
-                    <h3 class="text-lg font-semibold text-gray-700"><i class="text-green-500 fas fa-sync-alt"></i> Maintenances en Cours</h3>
-                    <p class="text-3xl font-bold text-green-500">{{ $maintenancesEnCours ?? '' }}</p>
-                </div>
-                <div class="p-6 bg-white rounded-lg shadow-md">
-                    <h3 class="text-lg font-semibold text-gray-700"><i class="text-red-500 fas fa-check-double"></i> Maintenances Terminées</h3>
-                    <p class="text-3xl font-bold text-red-500">{{ $maintenancesTerminees ?? ''}}</p>
-                </div>
-                            <!-- Maintenances en attente -->
-                <div class="p-6 bg-white rounded-lg shadow-md mt-4">
-                    <h3 class="text-lg font-semibold text-gray-700"><i class="text-yellow-500 fas fa-hourglass-start"></i> Maintenances En Attente</h3>
-                    <p class="text-3xl font-bold text-yellow-500">{{ $maintenancesEnAttente ?? '' }}</p>
-                </div>
+       <!-- Main Content -->
+<main class="flex-1 p-10 bg-[#F3F3F3] rounded-tl-1xl">
 
-                <!-- Maintenances annulées -->
-                <div class="p-6 bg-white rounded-lg shadow-md mt-4">
-                    <h3 class="text-lg font-semibold text-gray-700"><i class="text-gray-500 fas fa-times-circle"></i> Maintenances Annulées</h3>
-                    <p class="text-3xl font-bold text-gray-500">{{ $maintenancesAnnulees ?? '' }}</p>
-                </div>
+        <!-- La premeiere drande carte -->
+    <div class="flex p-8 justify-around rounded-lg border border-1 border-[#989898] ">
 
-                <!-- Maintenances reportées -->
-                <div class="p-6 bg-white rounded-lg shadow-md mt-4">
-                    <h3 class="text-lg font-semibold text-gray-700"><i class="text-blue-500 fas fa-calendar-alt"></i> Maintenances Reportées</h3>
-                    <p class="text-3xl font-bold text-blue-500">{{ $maintenancesReporte ?? '' }}</p>
-                </div>
-                <div class="p-6 bg-white rounded-lg shadow-md">
-                    <h3 class="text-lg font-semibold text-gray-700"><i class="text-cyan-500 fas fa-key"></i> Total Licences </h3>
-                    <p class="text-3xl font-bold text-cyan-500">{{ $totalLicences ?? ''}}</p>
-                </div>
-
-                <div class="p-6 bg-white rounded-lg shadow-md">
-                    <h3 class="text-lg font-semibold text-gray-700"> <i class="text-purple-500 fas fa-laptop-code"></i> Total Logiciels</h3>
-                    <p class="text-3xl font-bold text-purple-500">{{ $totalLogiciels ?? ''}}</p>
-                </div>
-
+         <div class="flex items-center bg-[#1FB19E] p-4 w-[400px] rounded-lg space-x-2 justify-between">
+            <div class="flex items-center space-x-2"> 
+                <img class=" h-7" src="images/users.png" alt="">
+                <h3 class="text-white">Total Employés</h3>
             </div>
-        </main>
+             <p class="ml-auto text-3xl font-bold text-white">{{ $totalEmployes ?? '' }}</p>
+        </div>
         
+
+        <div class="flex bg-[#272C62] p-4 w-[400px] rounded-lg space-x-2 justify-between">
+
+            <div class="flex items-center space-x-2">
+                 <img class="h-7" src="images/users.png" alt=""> 
+                <h3 class="text-white">Total Licences</h3>
+            </div>
+
+             <p class="text-3xl font-bold text-white">{{ $totalLicences ?? '' }}</p>
+        </div>
+
+    </div> <br>
+
+    <!-- La deuxieme grande carte -->
+<div class="rounded-lg border border-1 border-[#989898] p-10">
+
+            <!-- La div1 -->
+    <div class="flex justify-evenly  ">
+                <!-- La carte1 -->
+        <div class="flex items-center bg-white p-4 w-[400px] rounded-lg space-x-2 border-[#989898] justify-between">
+            <div class="flex items-center space-x-2 ">
+                <img class=" h-6" src="images/Group 1.png" alt="">
+                <h3 class="text-[#585858] ">Total Équipements</h3>
+            </div>
+                 <p class="ml-auto text-2xl text-[#585858] left-80">. {{ $totalEquipements ?? '' }}</p>
+        </div>
+
+          <!-- La carte2 -->
+        <div class="flex bg-white p-4 w-[400px] rounded-lg space-x-2 justify-between">
+            <div class="flex items-center space-x-2">
+                <img class="h-7" src="images/Group 1.png" alt=""> 
+                <h3 class="text-[#585858] ">Équipements Actifs</h3>
+            </div>
+                <p class="text-2xl  text-[#585858] ">.{{  $equipementsActifs ?? '' }}</p>
+
+        </div>
+
+    </div> <br>
+
+                    <!-- La div2 -->
+      <div class="flex justify-evenly">
+        <div class="flex items-center bg-white p-4 w-[400px] rounded-lg space-x-2 border-[#989898] justify-between">
+            <div class="flex items-center space-x-2"> 
+                <img class=" h-6" src="images/Group 1.png" alt="">
+                <h3 class="text-[#585858] ">Équipements en Panne</h3>
+            </div> 
+
+             <p class="ml-auto text-2xl text-[#585858] ">.{{ $equipementsEnPanne ?? '' }}</p>
+        </div>
+
+
+        <div class="flex bg-white p-4 w-[400px] rounded-lg space-x-2  justify-between">
+
+            <div class="flex items-center space-x-2">
+                 <img class="h-7" src="images/Group 1.png" alt=""> 
+                <h3 class="text-[#585858] ">Équipements Hors D'usage</h3>
+            </div>
+
+             <p class="text-2xl text-[#585858] ">.{{  $equipementsHorsService ?? '' }}</p>
+        </div>
+
+      </div> <br>
+
+
+                    <!-- La div3 -->
+      <div class="flex justify-evenly">
+        <div class="flex items-center bg-white p-4 w-[400px] rounded-lg space-x-2 border-[#989898] justify-between">
+            <div class="flex items-center space-x-2"> 
+                <img class=" h-6" src="images/Group 1.png" alt="">
+                <h3 class="text-[#585858] ">Total Maintenances</h3>
+            </div> 
+
+             <p class="ml-auto text-2xl text-[#585858] ">.{{ $totalMaintenances ?? '' }}</p>
+        </div>
+
+
+        <div class="flex bg-white p-4 w-[400px] rounded-lg space-x-2  justify-between">
+
+            <div class="flex items-center space-x-2">
+                 <img class="h-7" src="images/Group 1.png" alt=""> 
+                <h3 class="text-[#585858] ">Maintenances en Cours</h3>
+            </div>
+
+             <p class="text-2xl text-[#585858] ">.{{  $maintenancesEnCours ?? '' }}</p>
+        </div>
+
+      </div> <br>
+
+
+                    <!-- La div4 -->
+      <div class="flex justify-evenly">
+        <div class="flex items-center bg-white p-4 w-[400px] rounded-lg space-x-2 border-[#989898] justify-between">
+            <div class="flex items-center space-x-2"> 
+                <img class=" h-6" src="images/Group 1.png" alt="">
+                <h3 class="text-[#585858] ">Maintenances Terminées</h3>
+            </div> 
+
+             <p class="ml-auto text-2xl text-[#585858] ">.{{ $maintenancesTerminees ?? '' }}</p>
+        </div>
+
+
+        <div class="flex bg-white p-4 w-[400px] rounded-lg space-x-2 justify-between ">
+
+            <div class="flex items-center space-x-2">
+                 <img class="h-7" src="images/Group 1.png" alt=""> 
+                <h3 class="text-[#585858] ">Maintenances En Attente</h3>
+            </div>
+
+             <p class="text-2xl text-[#585858] ">.{{  $maintenancesEnAttente ?? '' }}</p>
+        </div>
+
+      </div> <br>
+
+
+                    <!-- La div5 -->
+      <div class="flex justify-evenly">
+        <div class="flex items-center bg-white p-4 w-[400px] rounded-lg space-x-2 border-[#989898] justify-between">
+            <div class="flex items-center space-x-2"> 
+                <img class=" h-6" src="images/Group 1.png" alt="">
+                <h3 class="text-[#585858] ">Maintenances Annulées</h3>
+            </div> 
+
+             <p class="ml-auto text-2xl text-[#585858] ">.{{ $maintenancesAnnulees ?? '' }}</p>
+        </div>
+
+
+        <div class="flex bg-white p-4 w-[400px] rounded-lg space-x-2 justify-between">
+
+            <div class="flex items-center space-x-2">
+                 <img class="h-7" src="images/Group 1.png" alt=""> 
+                <h3 class="text-[#585858] ">Maintenances Reportées</h3>
+            </div>
+
+             <p class="text-2xl text-[#585858] ">.{{  $maintenancesReporte ?? '' }}</p>
+        </div>
+
+      </div> 
+
+</div> <br> <br>
+        <div class="flex justify-center items-center">
+            <img src="{{ asset('images/logoilimiGroup.png') }}" alt="Logo" class="h-6">
+        </div>
+
+</main>
+
     </div>
 
+    
 </body>
     </html>
 </x-app-layout>
-
