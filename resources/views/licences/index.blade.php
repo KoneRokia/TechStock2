@@ -20,31 +20,30 @@
              @include('layouts.sidebar')
 
         <!-- Main Content -->
-        <main class="flex-1 p-10 bg-gray-100">
+        <main class="flex-1 p-10 bg-[#F3F3F3]">
             <div class="container">
-                <h2 class="mb-4 text-2xl font-bold">Gestion des licences</h2> <br><br>
-
             @if(auth()->user()->role === 'admin' || auth()->user()->role === 'editeur')
-            <a href="{{ route('licences.create') }}" class="p-2 mb-4 text-white bg-blue-600 rounded">Ajouter une licence</a>
+            <a href="{{ route('licences.create') }}" class="p-2 mb-4 text-white bg-[#3A5DA8] rounded-lg">Ajouter une licence</a>
         @endif <br> <br>
 
+             <h2 class="mb-4 text-xl font-bold text-[#1FB19E]">Liste des licences</h2>
 
             <!-- Affichage des licences -->
-            <table class="w-full overflow-hidden bg-white rounded-lg shadow-md table-auto">
+            <table class="w-full border border-collapse table-auto rounded-lg bg-[#D9D9D9]" style="font-size:15px">
                 <thead>
-                    <tr class="text-white bg-blue-900">
-                        <th class="px-4 py-2 border">Clé de licence</th>
-                        <th class="px-4 py-2 border">Type</th>
-                        <th class="px-4 py-2 border">Nombre d'utilisateurs</th>
-                        <th class="px-4 py-2 border">Date d'expiration</th>
-                        <th class="px-4 py-2 border">État</th>
-                        <th class="px-4 py-2 border">Logiciels associés</th>
-                        <th class="px-4 py-2 border">Action</th>
+                    <tr class="text-[#585858] bg-[#D9D9D9]">
+                        <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Clé de licence</th>
+                        <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Type</th>
+                        <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Nombre d'utilisateurs</th>
+                        <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Date d'expiration</th>
+                        <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">État</th>
+                        <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Logiciels associés</th>
+                        <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($licences as $licence)
-                        <tr>
+                        <tr class="border-b odd:bg-[#F3F3F3] even:bg-[#EBEBEB] text-[#585858]">
                             <td class="px-4 py-2 border">{{ $licence->cle_licence }}</td>
                             <td class="px-4 py-2 border">{{ $licence->type }}</td>
                             <td class="px-4 py-2 border">{{ $licence->nombre_utilisateurs }}</td>

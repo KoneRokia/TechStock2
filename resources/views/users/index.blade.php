@@ -9,33 +9,33 @@
          @include('layouts.sidebar')
 
     <!-- Main Content -->
-    <main class="flex-1 p-10 bg-gray-100">
+    <main class="flex-1 p-10 bg-[#F3F3F3]">
         <div class="container p-6 mx-auto">
-            <h2 class="mb-4 text-2xl font-bold">Liste des Utilisateurs</h2>
 
                 @if(auth()->user()->role === 'admin')
-        <a href="{{ route('users.create') }}" class="px-4 py-2 text-white bg-blue-500 rounded">➕ Ajouter un utilisateur</a>
+        <a href="{{ route('users.create') }}" class="p-2 mb-4 text-white bg-[#3A5DA8] rounded-lg">➕ Ajouter un utilisateur</a>
     @endif <br><br>
 
-
+         <h2 class="mb-4 text-xl font-bold text-[#1FB19E]">Liste des Utilisateurs</h2>
+     
             @if(session('success'))
                 <div class="p-4 mb-4 text-green-700 bg-green-100 rounded">
                     {{ session('success') }}
                 </div>
             @endif
 
-            <table class="w-full border border-collapse border-gray-300">
+            <table class="w-full border border-collapse table-auto rounded-lg bg-[#D9D9D9]" style="font-size:15px">
                 <thead>
-                    <tr class= "bg-blue-900">
-                        <th class="p-2 border">Nom</th>
-                        <th class="p-2 border">Email</th>
-                        <th class="p-2 border">Statut</th>
-                        <th class="p-2 border">Actions</th>
+                    <tr class= "text-[#585858] bg-[#D9D9D9]">
+                        <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Nom</th>
+                        <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Email</th>
+                        <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Statut</th>
+                        <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($users as $user)
-                        <tr class="border">
+                        <tr class="border-b odd:bg-[#F3F3F3] even:bg-[#EBEBEB] text-[#585858]">
                             <td class="p-2 border">{{ $user->name }}</td>
                             <td class="p-2 border">{{ $user->email }}</td>
                             <td class="p-2 border">

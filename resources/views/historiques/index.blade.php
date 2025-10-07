@@ -10,28 +10,28 @@
          @include('layouts.sidebar')
 
         <!-- Main Content -->
-        <main class="flex-1 p-10 bg-gray-100">
+        <main class="fflex-1 p-10 bg-[#F3F3F3]">
             <div class="container mx-auto">
                 <div class="container">
-                    <h2 class="mb-4 text-2xl font-semibold">Historique des équipements</h2><br><br>
+                    <h2 class="mb-4 text-xl font-semibold text-[#1FB19E]">Historique des équipements</h2>
 
                     <div class="overflow-y-auto max-h-[500px] border rounded-lg shadow-md">
-                        <table  class="w-full border border-collapse border-gray-300 table-auto" style="font-size:15px">
+                        <table  class="w-full border border-collapse table-auto rounded-lg bg-[#D9D9D9]" style="font-size:15px">
 
                             <thead class="sticky top-0 bg-[#67b09d] text-white">
 
-                                <tr class="text-white bg-blue-900">
-                                <th class="px-4 py-2 border">Équipement</th>
-                                <th class="px-4 py-2 border">Numéro de série</th>
-                                <th class="px-4 py-2 border">Ancien utilisateur</th>
-                                <th class="px-4 py-2 border">Nouveau utilisateur</th>
-                                <th class="px-4 py-2 border">Date de passation</th>
-                                <th class="px-4 py-2 border">Temps d'utilisation</th>
+                                <tr class="text-[#585858] bg-[#D9D9D9]">
+                                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Équipement</th>
+                                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Numéro de série</th>
+                                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Ancien utilisateur</th>
+                                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Nouveau utilisateur</th>
+                                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Date de passation</th>
+                                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Temps d'utilisation</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($historiques as $historique)
-                            <tr class="border-b hover:bg-gray-200">
+                            <tr class="border-b odd:bg-[#F3F3F3] even:bg-[#EBEBEB] text-[#585858]">
 
                                     <td class="px-4 py-2 border">{{ $historique->equipement->nom }}</td>
                                     <td class="px-4 py-2 border">{{ $historique->equipement->numero_serie }}</td>

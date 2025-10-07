@@ -15,8 +15,6 @@
         <main class="flex-1 p-10 bg-[#F3F3F3]">
             <div class="container mx-auto">
                 <!-- Ajouter un équipement Section -->
-                <h1 class="mb-4 text-2xl font-semibold">Liste des équipements</h1> <br>
-
                 @if(auth()->user()->role === 'admin' || auth()->user()->role === 'editeur')
                 <a href="{{ route('equipements.create') }}" class="p-2 mb-4 text-white bg-[#3A5DA8] rounded-lg">Ajouter un équipement</a>
                 @endif <br> <br>
@@ -30,6 +28,8 @@
                  </button>               
                  </div> <br>
 
+
+                <h1 class="mb-4 text-xl font-semibold text-[#1FB19E]">Liste des équipements</h1>
 
                 <div id="equipementsList">
                     <!-- La liste des équipements sera affichée ici -->

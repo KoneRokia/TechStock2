@@ -10,36 +10,36 @@
          @include('layouts.sidebar')
 
         <!-- Main Content -->
-        <main class="flex-1 p-10 bg-gray-100">
+        <main class="flex-1 p-10 bg-[#F3F3F3]">
             <div class="container mx-auto">
                 <div class="container">
-                    <h1 class="mb-4 text-2xl font-semibold">Liste des employés</h1> <br><br>
 
                 @if(auth()->user()->role === 'admin' || auth()->user()->role === 'editeur')
-                <a href="{{ route('employes.create') }}" class="p-2 mb-4 text-white bg-blue-600 rounded">Ajouter un employé</a>
+                <a href="{{ route('employes.create') }}" class="p-2 mb-4 text-white bg-[#3A5DA8] rounded-lg">Ajouter un employé</a>
                 @endif <br> <br>
 
+                    <h1 class="mb-4 text-2xl font-semibold text-[#1FB19E]">Liste des employés</h1>
 
                 <div class="overflow-y-auto max-h-[500px] border rounded-lg shadow-md">
 
                     <!-- Affichage des employés -->
-                    <table  class="w-full border border-collapse border-gray-300 table-auto" style="font-size:15px">
+                    <table  class="w-full border border-collapse table-auto rounded-lg bg-[#D9D9D9]" style="font-size:15px">
                         <thead class="sticky top-0 bg-[#67b09d] text-white">
-                            <tr class="text-white bg-blue-900">
-                                <th class="px-4 py-2 border">Nom</th>
-                                <th class="px-4 py-2 border">Prénom</th>
-                                <th class="px-4 py-2 border">Poste</th>
-                                <th class="px-4 py-2 border">Date d'embauche</th>
-                                {{-- <th class="px-4 py-2 border">Utilisateur</th> --}}
-                                <th class="px-4 py-2 border">Équipements</th>
-                                <th class="px-4 py-2 border">Action</th>
-                                <th class="py-2 border px-">Affectation</th>
+                            <tr class="text-[#585858] bg-[#D9D9D9]">
+                                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Nom</th>
+                                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Prénom</th>
+                                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Poste</th>
+                                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Date d'embauche</th>
+                                {{-- <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Utilisateur</th> --}}
+                                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Équipements</th>
+                                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Action</th>
+                                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Affectation</th>
                             </tr>
                         </thead>
                         <tbody>
 
                   @foreach($employes as $employe)
-                            <tr>
+                            <tr class="border-b odd:bg-[#F3F3F3] even:bg-[#EBEBEB] text-[#585858]">
                                 <td class="px-4 py-2 border">{{ $employe->nom }}</td>
                                 <td class="px-4 py-2 border">{{ $employe->prenom }}</td>
                                 <td class="px-4 py-2 border">{{ $employe->poste }}</td>
@@ -48,7 +48,7 @@
                                     @foreach($employe->equipements as $equipement)
                                         <span class="badge badge-primary">{{ $equipement->nom }}</span>
                                     @endforeach
-                                </td>
+                                </td class="border-b odd:bg-[#F3F3F3] even:bg-[#EBEBEB] text-[#585858]">
                                 <td class="px-4 py-2 border">
                                     <a href="{{ route('employes.show', $employe) }}" class="text-green-500">👁️</a>
                                     <a href="{{ route('employes.edit', $employe->id) }}" class="text-blue-500"

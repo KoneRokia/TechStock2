@@ -9,30 +9,32 @@
          @include('layouts.sidebar')
 
     <!-- Main Content -->
-    <main class="flex-1 p-10 bg-gray-100">
+    <main class="flex-1 p-10 bg-[#F3F3F3]">
         <div class="container">
 
-        <h1 class="mb-4 text-2xl font-bold">Liste des Logiciels</h1>
 
         @if(auth()->user()->role === 'admin' || auth()->user()->role === 'editeur')
-            <a href="{{ route('logiciels.create') }}" class="p-2 mb-4 text-white bg-blue-600 rounded">➕ Ajouter un Logiciel</a>
+            <a href="{{ route('logiciels.create') }}" class="p-2 mb-4 text-white bg-[#3A5DA8] rounded-lg">➕ Ajouter un Logiciel</a>
         @endif <br> <br>
 
-        <table class="w-full overflow-hidden bg-white rounded-lg shadow-md table-auto" style="font-size:20px">
+              <h1 class="mb-4 text-xl font-bold text-[#1FB19E]">Liste des Logiciels</h1>
+
+
+        <table class="w-full border border-collapse table-auto rounded-lg bg-[#D9D9D9]" style="font-size:15px">
             <thead>
-                    <tr class="text-white bg-blue-900">
-                        <th class="px-4 py-2 border">Nom</th>
-                        <th class="px-4 py-2 border">Version</th>
-                        <th class="px-4 py-2 border">Licences associées</th>
-                        <th class="px-4 py-2 border">Employés utilisant ce logiciel</th>
-                        <th class="px-4 py-2 border">Actions</th>
+                    <tr class="text-[#585858] bg-[#D9D9D9]">
+                        <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Nom</th>
+                        <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Version</th>
+                        <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Licences associées</th>
+                        <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Employés utilisant ce logiciel</th>
+                        <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Actions</th>
                     </tr>
 
 
             </thead>
             <tbody>
                 @foreach($logiciels as $logiciel)
-                    <tr>
+                    <tr class="border-b odd:bg-[#F3F3F3] even:bg-[#EBEBEB] text-[#585858]">
                         <td class="px-4 py-2 border">{{ $logiciel->nom }}</td>
                         <td class="px-4 py-2 border">{{ $logiciel->version }}</td>
                         <td class="px-4 py-2 border">

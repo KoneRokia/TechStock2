@@ -9,35 +9,36 @@
          @include('layouts.sidebar')
 
         <!-- Main Content -->
-        <main class="flex-1 p-10 bg-gray-100">
+        <main class="flex-1 p-10 bg-[#F3F3F3]">
             <div class="container mx-auto">
 
 <div class="container">
-    <h1 class="mb-4 text-2xl font-bold">Gestion des rapports</h1> <br><br>
-    <a href="{{ route('rapports.create') }}" class="px-4 py-2 mb-3 text-white bg-blue-500 rounded btn btn-primary">Ajouter un rapport</a> <br><br>
+    
+    <a href="{{ route('rapports.create') }}" class="p-2 mb-4 text-white bg-[#3A5DA8] rounded-lg">Ajouter un rapport</a> <br><br>
 
+    <h1 class="mb-4 text-xl font-bold text-[#1FB19E]">Liste des rapports</h1>
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
     <div class="overflow-y-auto max-h-[500px] border rounded-lg shadow-md">
 
-    <table class="w-full border border-collapse border-gray-300 table-auto" style="font-size:20px">
+    <table class="w-full border border-collapse table-auto rounded-lg bg-[#D9D9D9]" style="font-size:15px">
         <thead class="sticky top-0 bg-[#67b09d] text-white">
 
-            <tr class="text-white bg-blue-900">
-                <th class="p-2 border">Type</th>
-                <th class="p-2 border">Description</th>
-                <th class="p-2 border">Titre</th>
-                <th class="p-2 border">Date</th>
-                <th class="p-2 border">Nom</th>
-                <th class="p-2 border">Equipement</th>
-                <th class="p-2 border">Actions</th>
+            <tr class="text-[#585858] bg-[#D9D9D9]">
+                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Type</th>
+                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Description</th>
+                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Titre</th>
+                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]r">Date</th>
+                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Nom</th>
+                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Equipement</th>
+                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Actions</th>
             </tr>
             {{-- <th class="p-2 border">Fichier</th> --}}
         </thead>
         <tbody>
             @foreach($rapports as $rapport)
-            <tr>
+            <tr class="border-b odd:bg-[#F3F3F3] even:bg-[#EBEBEB] text-[#585858]">
                 <td class="p-2 border">{{ $rapport->type }}</td>
                  <td class="p-2 border">{{ Str::limit($rapport->description, 50) }}</td>
                   <td>{{ $rapport->titre }}</td>
