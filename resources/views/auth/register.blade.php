@@ -6,9 +6,8 @@
 
     <form method="POST" action="{{ route('register', [], true) }}" id="registerForm">
         @csrf
-        <div class="text-center text-[#3A5DA8]">
+        <div class="text-center text-[#3A5DA8] mb-2">
             <x-input-label for="inscription" :value="__('Inscription')" style="font-size: 20px;; color: #3A5DA8;" class=" text-right"  />
-
         </div>
 
         <!-- Name -->
@@ -17,7 +16,6 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
-
         <!-- Prenom -->
         <div>
             <x-text-input id="prenom" class="block w-full mt-1" type="text" name="prenom" :value="old('prenom')" required autofocus autocomplete="prenom" placeholder="Prénom" />
@@ -25,7 +23,7 @@
         </div>
 
         <!-- Rôle -->
-    <div class="mt-4">
+    <div class="">
     <select id="role" name="role" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
         <option value="">-- Sélectionner un rôle --</option>
         <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
@@ -37,13 +35,13 @@
     </div>
 
         <!-- Email Address -->
-        <div class="mt-4">
+        <div class="">
             <x-text-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder="E-mail" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
+        <div class="">
 
             <x-text-input id="password" class="block w-full mt-1"
                             type="password"
@@ -54,7 +52,7 @@
         </div>
 
         <!-- Confirm Password -->
-        <div class="mt-4">
+        <div class="">
             <x-text-input id="password_confirmation" class="block w-full mt-1"
                             type="password"
                             name="password_confirmation" required autocomplete="new-password" placeholder="Confirmation mot de passe" />
@@ -62,7 +60,7 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
+        <div class="flex items-center justify-end mt-2">
             <a class="text-sm underline rounded-md text-white-600  hover:text-gray-900  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login')  }}" style="color: #3A5DA8;">
              {{ __('Vous avez déjà un Compte?') }}
             </a>

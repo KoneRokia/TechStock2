@@ -3,29 +3,29 @@
         <img src="{{ asset('images/iTechSTOCK.png') }}" alt="Logo" class="h-12" style=" margin-left:10px">
     </div>
 
-    <div class="p-4 rounded-lg">
+<div class="p-4 rounded-xl">
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
  
     <form method="POST" action="{{ route('login') }}"  id="loginForm">
         @csrf
-        <div class="text-center text-[#3A5DA8]">
+        <div class="text-center text-[#3A5DA8] mb-2">
             <x-input-label for="connexion" :value="__('Connexion')" style="font-size: 20px; color: #3A5DA8;" class=" text-right"  />
 
         </div>
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email')" class="text-white" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="E-mail" />
+            <!-- <x-input-label for="email" :value="__('Email')" class="text-black" /> -->
+            <x-text-input id="email" class="block mt-1 w-full text-[#989898]" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="E-mail"/>
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div>
-            <x-input-label for="password" :value="__('Mot de passe')" class="text-white"/>
+            <!-- <x-input-label for="password" :value="__('Mot de passe')" class="text-black"/> -->
 
-            <x-text-input id="password" class="block mt-1 w-full"
+            <x-text-input id="password" class="block mt-1 w-full text-[#989898]"
                             type="password"
                             name="password"
                             required autocomplete="current-password" placeholder="Mot de passe" />
@@ -71,5 +71,6 @@
             {{ session('error') }}
         </div>
     @endif
+    
 
 </x-guest-layout>
