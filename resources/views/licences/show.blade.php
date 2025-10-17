@@ -23,9 +23,9 @@
                         Non défini
                     @endif</p>
 
-                    <div class="mt-6">
+                    <!-- <div class="mt-6">
                         <a href="{{ route('licences.index') }}" class="px-4 py-2 text-white bg-gray-500 rounded">Retour</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </main>

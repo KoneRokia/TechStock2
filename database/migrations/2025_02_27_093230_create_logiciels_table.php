@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nom');
             $table->string('version')->nullable();
-            $table->string('éditeur')->nullable();
+            $table->string('editeur')->nullable();
             $table->string('type'); // Exemple : "payant", "open-source"
             $table->date('date_achat')->nullable();
             $table->date('date_expiration')->nullable();

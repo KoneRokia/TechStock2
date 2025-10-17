@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Logiciel extends Model
 {
     use HasFactory;
-    protected $fillable = ['nom', 'version', 'date_achat', 'date_expiration','type', 'éditeur', 'user_id', ];
+    protected $fillable = ['nom', 'version', 'date_achat', 'date_expiration','type', 'editeur', 'user_id', ];
 
     public function licences()
     {

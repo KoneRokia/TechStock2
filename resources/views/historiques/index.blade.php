@@ -15,17 +15,32 @@
                 <div class="container">
                     <h2 class="mb-4 text-xl font-semibold text-[#1FB19E]">Historique des équipements</h2>
 
-                    <div class="overflow-y-auto max-h-[500px] border rounded-lg shadow-md">
-                        <table  class="w-full border border-collapse table-auto rounded-lg bg-[#D9D9D9]" style="font-size:15px">
+                    <div class="overflow-y-auto max-h-[500px] border rounded-lg">
+                     <table  class="w-full border border-collapse table-auto rounded-lg bg-[#D9D9D9]" style="font-size:15px">
 
                             <thead class="sticky top-0 bg-[#67b09d] text-white">
 
-                                <tr class="text-[#585858] bg-[#D9D9D9]">
-                                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Équipement</th>
-                                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Numéro de série</th>
-                                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Ancien utilisateur</th>
-                                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Nouveau utilisateur</th>
-                                <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Date de passation</th>
+                            <tr class="text-[#585858] bg-[#D9D9D9]">
+                                <th class="relative px-4 py-2 border border-[#D9D9D9] border-r-0 rounded-lg">
+                                    <span>Équipement</span>
+                                    <div class="absolute top-1/2 -translate-y-1/2 right-0 translate-x-2 rounded-full bg-[#989898] p-1 w-1 h-1"></div>
+                                </th>
+                                <th class="relative px-4 py-2 border border-[#D9D9D9] border-r-0 rounded-lg">
+                                    <span>Numéro de série</span>
+                                    <div class="absolute top-1/2 -translate-y-1/2 right-0 translate-x-2 rounded-full bg-[#989898] p-1 w-1 h-1"></div>
+                                </th>
+                                <th class="relative px-4 py-2 border border-[#D9D9D9] border-r-0 rounded-lg">
+                                    <span>Ancien utilisateur</span>
+                                    <div class="absolute top-1/2 -translate-y-1/2 right-0 translate-x-2 rounded-full bg-[#989898] p-1 w-1 h-1"></div>
+                                </th>
+                                <th class="relative px-4 py-2 border border-[#D9D9D9] border-r-0 rounded-lg">
+                                    <span>Nouveau utilisateur</span>
+                                    <div class="absolute top-1/2 -translate-y-1/2 right-0 translate-x-2 rounded-full bg-[#989898] p-1 w-1 h-1"></div>
+                                </th>
+                                <th class="relative px-4 py-2 border border-[#D9D9D9] border-r-0 rounded-lg">
+                                    <span>Date de passation</span>
+                                    <div class="absolute top-1/2 -translate-y-1/2 right-0 translate-x-2 rounded-full bg-[#989898] p-1 w-1 h-1"></div>
+                                </th>
                                 <th class="px-4 py-2 border rounded-lg border-[#D9D9D9]">Temps d'utilisation</th>
                             </tr>
                         </thead>

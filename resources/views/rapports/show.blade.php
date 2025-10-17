@@ -17,6 +17,8 @@
                     <p class="mb-2 text-gray-700"><strong>Type :</strong> {{  $rapport->type}}</p>
                     <p class="mb-2 text-gray-700"><strong>Description :</strong> {{ $rapport->description }}</p>
                     <p class="text-gray-700"><strong>Date de génération :</strong> {{ $rapport->date_generation }}</p>
+                    <p class="text-gray-700">Équipement<strong> :</strong> {{ $rapport->equipement->nom  }}</p>
+                    <p class="text-gray-700">Nom<strong> :</strong> {{ $rapport->user->name }}</p>
 
                     @if($rapport->fichier)
                         <div class="mt-4">
@@ -28,9 +30,9 @@
                         </div>
                     @endif
 
-                    <div class="mt-6">
+                    <!-- <div class="mt-6">
                         <a href="{{ route('rapports.index') }}" class="px-4 py-2 text-white bg-gray-500 rounded">Retour</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </main>

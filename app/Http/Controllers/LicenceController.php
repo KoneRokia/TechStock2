@@ -14,7 +14,8 @@ class LicenceController extends Controller
     public function index()
 {
     $licences = Licence::with('logiciels')->get();
-    return view('licences.index', compact('licences'));
+    $logiciels = Logiciel::all();
+    return view('licences.index', compact('licences', 'logiciels'));
 }
 
     public function create()
@@ -29,7 +30,7 @@ class LicenceController extends Controller
         $request->validate([
             'cle_licence' => 'required|unique:licences',
             'type' => 'required',
-            'nombre_utilisateurs' => 'nullable|integer',
+            'nombre_utilisateurs' => 'nullable|string|max:255',
             'date_expiration' => 'nullable|date',
             'logiciel_ids' => 'required|array', // Doit être un tableau d'IDs
             'logiciel_ids.*' => 'exists:logiciels,id', // Chaque ID doit exister
@@ -43,12 +44,17 @@ class LicenceController extends Controller
     }
 
 
-    public function show($id)
-    {
-        // Afficher les détails d'une licence
-        $licence = Licence::findOrFail($id);
-        return view('licences.show', compact('licence'));
+   public function show($id)
+{
+    $licence = Licence::with('logiciels')->findOrFail($id);
+
+    if (request()->expectsJson()) {
+        return response()->json($licence);
     }
+
+    return view('licences.show', compact('licence'));
+}
+
 
     public function edit($id)
     {
@@ -60,16 +66,19 @@ class LicenceController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Valider les données reçues
-        $request->validate([
-            'cle_licence' => 'required|string|max:255',
-            'type' => 'required|string|max:255',
-            'nombre_utilisateurs' => 'required|integer|min:1',
-            'date_expiration' => 'required|date',
-            'etat' => 'required|string|max:50',
-            'logiciel_id' => 'required|exists:logiciels,id',
-        ]);
+        $user = auth()->user();
+        if (!in_array($user->role, ['admin','editeur'])) {
+            abort(403);
+        }
 
+        $request->validate([
+        'cle_licence' => 'required|string',
+        'type' => 'required|string',
+        'nombre_utilisateurs' => 'required|integer',
+        'date_expiration' => 'nullable|date',
+        'etat' => 'required|string',
+        'logiciel_id' => 'required|exists:logiciels,id',
+        ]);
         // Trouver et mettre à jour la licence
         $licence = Licence::findOrFail($id);
         $licence->update([

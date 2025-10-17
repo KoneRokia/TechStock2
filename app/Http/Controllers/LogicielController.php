@@ -13,7 +13,10 @@ class LogicielController extends Controller
     {
         // Afficher tous les logiciels
         $logiciels = Logiciel::all();
-        return view('logiciels.index', compact('logiciels'));
+        $licences = Licence::all();
+        $employes = Employe::all();
+
+        return view('logiciels.index', compact('logiciels', 'licences', 'employes'));
     }
 
     public function create()
@@ -29,6 +32,7 @@ public function store(Request $request)
     $request->validate([
         'nom' => 'required|string|max:255|unique:logiciels',
         'version' => 'required|string|max:255',
+        'editeur' => 'nullable|string|max:255',
         'description' => 'nullable|string',
         'licence_ids' => 'nullable|array',
         'licence_ids.*' => 'exists:licences,id',
@@ -50,12 +54,22 @@ public function store(Request $request)
 }
 
 
-    public function show($id)
-    {
-        // Afficher les détails d'un logiciel
-        $logiciel = Logiciel::findOrFail($id);
-        return view('logiciels.show', compact('logiciel'));
-    }
+   public function show($id)
+{
+    $logiciel = Logiciel::with(['licences', 'employes'])->findOrFail($id);
+
+    return response()->json([
+        'nom' => $logiciel->nom,
+        'version' => $logiciel->version,
+        'editeur' => $logiciel->editeur, // attention pas d'accent dans le JSON
+        'type' => $logiciel->type,
+        'date_achat' => $logiciel->date_achat,
+        'licences' => $logiciel->licences,
+        'employes' => $logiciel->employes,
+    ]);
+}
+
+
 
     public function edit($id)
     {
@@ -80,7 +94,7 @@ public function store(Request $request)
         'date_achat' => 'required|date',
         'date_expiration' => 'required|date',
         'type' => 'required|string|max:255',
-        'éditeur' => 'nullable|string|max:255',
+        'editeur' => 'nullable|string|max:255',
         'employes' => 'nullable|array', // Array d'employés à associer
         'licences' => 'nullable|array', // Array de licences à associer
     ]);
@@ -95,7 +109,7 @@ public function store(Request $request)
         'date_achat' => $request->date_achat,
         'date_expiration' => $request->date_expiration,
         'type' => $request->type,
-        'éditeur' => $request->éditeur,
+        'editeur' => $request->editeur,
     ]);
 
     // Gérer les relations many-to-many : ajouter/supprimer les employés et licences
@@ -137,4 +151,14 @@ public function store(Request $request)
 
         return redirect()->route('logiciels.index')->with('success', 'Logiciel affecté à l\'employé avec succès!');
     }
+
+        public function getLogicielData($id)
+    {
+        $logiciel = Logiciel::findOrFail($id);
+        return response()->json($logiciel);
+    }
+
+ 
+
+
 }

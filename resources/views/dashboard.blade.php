@@ -13,15 +13,15 @@
         <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
     </head>
 
-    <body class="bg-gray-100 ">
+    <body class="bg-[#3A5DA8] ">
 
-        <div class="flex">
+        <div class="flex ">
             <!-- Sidebar -->
            
         @include('layouts.sidebar')
 
        <!-- Main Content -->
-<main class="flex-1 p-10 bg-[#F3F3F3] rounded-tl-1xl">
+<main class="flex-1 p-10 bg-[#F3F3F3]" style=" border-radius: 1.6rem">
 
         <!-- La premeiere grande carte -->
     <div class=" p-8 justify-around rounded-lg border border-1 border-[#989898] ">
@@ -214,7 +214,6 @@
         <div class="flex justify-center items-center">
             <img src="{{ asset('images/logoilimiGroup.png') }}" alt="Logo" class="h-6">
 </div>
-
 </main>
 
     </div>

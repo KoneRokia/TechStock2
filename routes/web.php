@@ -79,6 +79,8 @@ Route::get('/rapports/{rapport}', [RapportController::class, 'show'])->name('rap
 Route::get('/historiques', [HistoriqueController::class, 'index'])->name('historiques.index');
 
 Route::resource('logiciels', LogicielController::class);
+Route::get('/logiciels/{id}/data', [LogicielController::class, 'getLogicielData']);
+
 
 // Routes réservées aux admins
 Route::middleware(['role:admin'])->group(function () {

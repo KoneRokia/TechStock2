@@ -20,8 +20,9 @@ class EmployeController extends Controller
         $employes = Employe::where('statut', '!=', 'supprimer')->get();
          // Récupérer les employés actifs
         $employes = Employe::where('statut', 'actif')->get();
+        $equipements = Equipement::all();
         
-        return view('employes.index', compact('employes'));
+        return view('employes.index', compact('employes','equipements'));
     }
 
 

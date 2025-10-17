@@ -16,7 +16,8 @@ class RapportController extends Controller
     public function index()
     {
         $rapports = Rapport::latest()->paginate(10);
-        return view('rapports.index', compact('rapports'));
+         $equipements = Equipement::all();
+        return view('rapports.index', compact('rapports','equipements'));
     }
 
     // Afficher le formulaire de création
@@ -78,6 +79,7 @@ class RapportController extends Controller
         'titre' => 'required|string|max:255',
         'description' => 'required|string',
         'date_generation' => 'required|date',
+        'user_id' => 'required|exists:users,id',
         'equipement_id' => 'required|exists:equipements,id',
     ]);
 

@@ -25,9 +25,9 @@
                         <img src="{{ asset('storage/' . $equipement->photo_equip) }}" alt="Image de l'équipement" class="object-cover w-16 h-16 rounded">
                     </td>
 
-                    <div class="mt-6">
-                        <a href="{{ route('equipements.index') }}" class="px-4 py-2 text-white bg-gray-500 rounded">Retour</a>
-                    </div>
+                        <!-- <div class="mt-6">
+                            <a href="{{ route('equipements.index') }}" class="px-4 py-2 text-white bg-gray-500 rounded">Retour</a>
+                        </div> -->
                 </div>
             </div>
         </main>

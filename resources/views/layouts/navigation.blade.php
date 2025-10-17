@@ -1,10 +1,10 @@
-<nav x-data="{ open: false }" class="bg-blue-900 border-b border-gray-100 p-6 ">
+<nav x-data="{ open: false }" class="bg-[#3A5DA8] border-b border-gray-100 p-6 ">
   <div class="max-w-8xl mx-auto  lg:px-8">
     <div class="flex justify-between h-16 items-center">
 
    <a href="{{ route('dashboard') }}" class="flex items-center space-x-4 sm:space-x-20">
     <img src="{{ asset('images/iTechSTOCK 1.png') }}" alt="Logo" class="w-20 h-10 object-contain" />
-    <h1 class="hidden sm:block text-lg font-bold text-white cursor-pointer">TABLEAU DE BORD</h1>
+    <h1 class="hidden sm:block text-lg text-white cursor-pointer font-semibold">TABLEAU DE BORD</h1>
 </a>
 
 

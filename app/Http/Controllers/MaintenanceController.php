@@ -14,7 +14,9 @@ class MaintenanceController extends Controller
     public function index()
     {
         $maintenances = Maintenance::with('user', 'equipement')->get();
-        return view('maintenances.index', compact('maintenances'));
+        $users = User::where('role', 'technicien')->get();
+        $equipements = Equipement::all();
+        return view('maintenances.index', compact('maintenances', 'users', 'equipements'));
     }
 
     public function create()
@@ -80,13 +82,20 @@ class MaintenanceController extends Controller
 }
 
 
+    public function show($id)
+{
+    $maintenance = Maintenance::with(['user', 'equipement'])->findOrFail($id);
 
+    return response()->json([
+        'equipement' => $maintenance->equipement->nom ?? 'N/A',
+        'type' => $maintenance->type,
+        'cout' => $maintenance->cout,
+        'date' => $maintenance->date,
+        'etat' => $maintenance->etat,
+        'technicien' => $maintenance->user->name ?? 'N/A'
+    ]);
+}
 
-         // Afficher un maintenance spécifique
-    public function show(Maintenance $maintenance)
-    {
-        return view('maintenances.show', compact('maintenance'));
-    }
 
 
 
