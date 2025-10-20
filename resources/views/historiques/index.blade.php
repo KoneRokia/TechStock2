@@ -11,7 +11,7 @@
 
         <!-- Main Content -->
         <main class="flex-1 bg-[#3A5DA8] -translate-y-1">
-            <div class="bg-[#F3F3F3] h-[700px] rounded-bl-[50px] mt-[3px]">
+            <div class="bg-[#F3F3F3] h-[750px] rounded-bl-[50px] mt-[3px]">
                 <div class="container p-8">
                     <h2 class="mb-4 text-xl font-semibold text-[#1FB19E]">Historique des équipements</h2>
 
