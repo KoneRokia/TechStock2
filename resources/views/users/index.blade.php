@@ -9,8 +9,9 @@
          @include('layouts.sidebar')
 
     <!-- Main Content -->
-    <main class="flex-1 p-10 bg-[#F3F3F3]">
-        <div class="container p-6 mx-auto">
+    <main class="flex-1 bg-[#3A5DA8] -translate-y-1">
+        <div class="bg-[#F3F3F3] h-[700px] rounded-bl-[50px] mt-[3px]">
+        <div class="container p-8 mx-auto">
 
                 @if(auth()->user()->role === 'admin')
                     <button id="btn-open-add-user" class="p-2 mb-4 text-white bg-[#3A5DA8] rounded-lg">
@@ -148,6 +149,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     </main>
                 <!-- Script Modal -->
                 <script>

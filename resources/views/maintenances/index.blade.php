@@ -9,8 +9,9 @@
          @include('layouts.sidebar')
 
     <!-- Main Content -->
-    <main class="flex-1 p-10 bg-[#F3F3F3]">
-        <div class="container">
+    <main class="flex-1 bg-[#3A5DA8] -translate-y-1">
+        <div class="bg-[#F3F3F3] h-[700px] rounded-bl-[50px] mt-[3px]">
+            <div class="container p-8">
 
             @if(auth()->user()->role === 'admin' || auth()->user()->role === 'editeur')
                 <button id="btn-open-add-maintenance" class="p-2 mb-4 text-white bg-[#3A5DA8] rounded-lg">
@@ -116,6 +117,8 @@
             
         </div>
 
+
+        </div>
 
         <!-- Modal Ajouter Maintenance -->
 <div id="addMaintenanceModal" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 z-50">

@@ -10,9 +10,9 @@
          @include('layouts.sidebar')
 
         <!-- Main Content -->
-        <main class="fflex-1 p-10 bg-[#F3F3F3]">
-            <div class="container mx-auto">
-                <div class="container">
+        <main class="flex-1 bg-[#3A5DA8] -translate-y-1">
+            <div class="bg-[#F3F3F3] h-[700px] rounded-bl-[50px] mt-[3px]">
+                <div class="container p-8">
                     <h2 class="mb-4 text-xl font-semibold text-[#1FB19E]">Historique des équipements</h2>
 
                     <div class="overflow-y-auto max-h-[500px] border rounded-lg">

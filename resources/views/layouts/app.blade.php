@@ -8,7 +8,7 @@
         <title>{{ config('app.name', 'iTechStock') }}</title>
 
         <!-- Favicon (image) -->
-        <link rel="icon" href="{{ asset('images/favicon-16x16.png') }}" type="image/jpg" sizes="180x180">
+        <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/jpg" sizes="180x180">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">

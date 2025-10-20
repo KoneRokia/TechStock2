@@ -49,6 +49,10 @@
             <div id="loading" style="display:none; color: black; font-size: 14px;"></div>
         </div>
 
+            <div class="mt-4 text-center">
+                <a href="{{route('register')}}" class="text-sm text-[#3A5DA8]"> Pas encore de compte? Créez-en un 
+                </a>
+            </div>
         <div class="flex justify-center mt-6   bottom-10">
                 <img src="{{ asset('images/logoilimiGroup.png') }}" alt="Logo" class="h-7">
         </div>

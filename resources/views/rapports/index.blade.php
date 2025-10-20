@@ -9,10 +9,10 @@
          @include('layouts.sidebar')
 
         <!-- Main Content -->
-        <main class="flex-1 p-4 sm:p-6 md:p-10 bg-[#F3F3F3]">
-            <div class="container mx-auto px-2 sm:px-4">
+        <main class="flex-1 bg-[#3A5DA8] -translate-y-1">
+            <div class="bg-[#F3F3F3] h-[700px] rounded-bl-[50px] mt-[3px]">
 
-<div class="container">
+                <div class="container p-8">
     
          @php
                 $userRole = auth()->user()->role;

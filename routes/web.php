@@ -30,7 +30,7 @@ use App\Http\Middleware\CheckAccountStatus;
 */
 
 Route::get('/', function () {
-    return redirect()->route('register'); //Rediriger vers la page d'inscription
+    return redirect()->route('login'); //Rediriger vers la page d'inscription
 });
 
 Route::get('/register',['RegisteredUserController'::class, 'create'])->name('register');

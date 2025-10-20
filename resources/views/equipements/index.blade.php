@@ -12,8 +12,9 @@
         @include('layouts.sidebar')
 
         <!-- Main Content -->
-        <main class="flex-1 p-10 bg-[#F3F3F3]">
-            <div class="container mx-auto">
+        <main class="flex-1 bg-[#3A5DA8] -translate-y-1">
+            <div class="bg-[#F3F3F3] h-[700px] rounded-bl-[50px] mt-[3px]">
+            <div class="container mx-auto p-8">
                 <!-- Ajouter un équipement Section -->
                 @if(auth()->user()->role === 'admin' || auth()->user()->role === 'editeur')
                     <button id="btn-open-add" class="p-2 mb-4 text-white bg-[#3A5DA8] rounded-lg">Ajouter un équipement</button>
@@ -362,7 +363,7 @@
                 
             </div>
 
-
+            </div>
 
         </main>
 
