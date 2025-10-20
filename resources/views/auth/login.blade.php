@@ -3,7 +3,7 @@
         <img src="{{ asset('images/iTechSTOCK.png') }}" alt="Logo" class="h-12" style=" margin-left:10px">
     </div>
 
-<div class="p-4 rounded-xl">
+<div class="rounded-xl p-96">
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -14,24 +14,17 @@
             <x-input-label for="connexion" :value="__('Connexion')" style="font-size: 20px; color: #3A5DA8;" class=" text-right"  />
 
         </div>
-        <!-- Email Address -->
-        <div>
-            <!-- <x-input-label for="email" :value="__('Email')" class="text-black" /> -->
-            <x-text-input id="email" class="block mt-1 w-full text-[#989898]" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="E-mail"/>
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+            <!-- Email -->
+            <div class="mb-4">
+                <x-text-input id="email" class="block w-full border border-gray-300 rounded-md p-3 text-sm text-gray-700 focus:ring-2 focus:ring-[#3A5DA8]" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder="E-mail" />
+                <x-input-error :messages="$errors->get('email')" class="mt-1 text-sm text-red-500" />
+            </div>
 
-        <!-- Password -->
-        <div>
-            <!-- <x-input-label for="password" :value="__('Mot de passe')" class="text-black"/> -->
-
-            <x-text-input id="password" class="block mt-1 w-full text-[#989898]"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" placeholder="Mot de passe" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+            <!-- Mot de passe -->
+            <div class="mb-4">
+                <x-text-input id="password" class="block w-full border border-gray-300 rounded-md p-3 text-sm text-gray-700 focus:ring-2 focus:ring-[#3A5DA8]" type="password" name="password" required autocomplete="current-password" placeholder="Mot de passe" />
+                <x-input-error :messages="$errors->get('password')" class="mt-1 text-sm text-red-500" />
+            </div>
 
 
 
@@ -57,6 +50,8 @@
                 <img src="{{ asset('images/logoilimiGroup.png') }}" alt="Logo" class="h-7">
         </div>
     </form>
+
+</div>
 <!--Nom de l'application en bas-->
 <script>
             document.getElementById("loginForm").addEventListener("submit", function(event) {
