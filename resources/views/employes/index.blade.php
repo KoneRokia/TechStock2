@@ -39,7 +39,7 @@
                                     <div class="absolute top-1/2 -translate-y-1/2 right-0 translate-x-2 rounded-full bg-[#989898] p-1 w-1 h-1"></div>
                                 </th>
                                 <th class="relative px-4 py-2 border border-[#D9D9D9] border-r-0 rounded-lg">
-                                    <span>Coût</span>
+                                    <span>Poste</span>
                                     <div class="absolute top-1/2 -translate-y-1/2 right-0 translate-x-2 rounded-full bg-[#989898] p-1 w-1 h-1"></div>
                                 </th>
                                 <th class="relative px-4 py-2 border border-[#D9D9D9] border-r-0 rounded-lg">
@@ -245,8 +245,6 @@
 
 
         </main>
-
-
             <!-- Script d'ajouter Employé -->
             <script>
                 function openAddEmployeeModal() {
@@ -292,7 +290,6 @@
                         document.getElementById('showModal').classList.add('hidden');
                     }
                 </script>
-
                     <!-- Script de modification d'employé -->
                     <script>
                         function openEditEmployeeModal(id, nom, prenom, email, telephone, poste, date_embauche) {
