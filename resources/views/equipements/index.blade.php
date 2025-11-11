@@ -80,7 +80,7 @@
                                 <td class="px-4 py-2 border">
                                     <img src="{{ asset('storage/' . $equipement->photo_equip) }}" 
                                         alt="Photo de l'équipement" 
-                                        class=" w-7 h-7 rounded">
+                                        class=" w-16 h-16 rounded">
                                 </td>
 
 
