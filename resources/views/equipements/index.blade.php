@@ -95,7 +95,17 @@
 
                                     <!-- Bouton Modifier pour l'admin et l'éditeur uniquement -->
                                    <button 
-                                        onclick="openEditModal({{ $equipement->id }}, '{{ $equipement->nom }}', '{{ $equipement->type }}', '{{ $equipement->date_achat }}', '{{ $equipement->caracteristique }}', '{{ $equipement->cout }}', '{{ $equipement->etat }}', '{{ $equipement->numero_serie }}', '{{ $equipement->marque }}')" 
+                                         onclick='openEditModal(
+                                                {{ $equipement->id }},
+                                                @json($equipement->nom),
+                                                @json($equipement->type),
+                                                @json(\Carbon\Carbon::parse($equipement->date_achat)->format("Y-m-d")),
+                                                @json($equipement->caracteristique),
+                                                @json($equipement->cout),
+                                                @json($equipement->etat),
+                                                @json($equipement->numero_serie),
+                                                @json($equipement->marque)
+                                            )'
                                         class="text-blue-600 hover:text-blue-800"
                                         title="Modifier">
                                         <img src="{{ asset('images/Group 7.png') }}" alt="Modifier" class="w-5 h-5 inline-block">
@@ -211,6 +221,12 @@
                                     <option value="Serveur">Serveur</option>
                                     <option value="Switch">Switch</option>
                                     <option value="Routeur">Routeur</option>
+                                    <option value="Ecran">Ecran</option>
+                                    <option value="Souris">Souris</option>
+                                    <option value="Telephone">Téléphone</option>
+                                    <option value="Television">Télévision</option>
+                                    <option value="Rallonge">Rallonge</option>
+                                    <option value="Adaptateur">Adaptateur</option>
                                     <option value="Autre">Autre</option>
                                 </select>
                             </div>

@@ -37,6 +37,12 @@
                             <option value="Serveur">Serveur</option>
                             <option value="Switch">Switch</option>
                             <option value="Routeur">Routeur</option>
+                            <option value="Ecran">Ecran</option>
+                            <option value="Souris">Souris</option>
+                            <option value="Telephone">Téléphone</option>
+                            <option value="Television">Télévision</option>
+                            <option value="Rallonge">Rallonge</option>
+                            <option value="Adaptateur">Adaptateur</option>
                             <option value="Autre">Autre</option>
                         </select>
                     </div>  <br>
