@@ -36,11 +36,17 @@
                                 <option value="Routeur" {{ old('type', $equipement->type) == 'Routeur' ? 'selected' : '' }}>Routeur</option>
                                 <option value="Switch" {{ old('type', $equipement->type) == 'Switch' ? 'selected' : '' }}>Switch</option>
                                 <option value="Serveur" {{ old('type', $equipement->type) == 'Serveur' ? 'selected' : '' }}>Serveur</option>
+                                 <option value="Routeur" {{ old('type', $equipement->type) == 'Écran' ? 'selected' : '' }}>Écran/option>
+                                <option value="Switch" {{ old('type', $equipement->type) == 'Téléphone<' ? 'selected' : '' }}>Téléphone<</option>
+                                <option value="Serveur" {{ old('type', $equipement->type) == 'Télévision ? 'selected' : '' }}>Télévision</option>
+                                <option value="Serveur" {{ old('type', $equipement->type) == 'Rallong ? 'selected' : '' }}>Rallong</option>
+                                <option value="Serveur" {{ old('type', $equipement->type) == 'Adaptateur ? 'selected' : '' }}>Adaptateur</option>
                                 <option value="Autre" {{ old('type', $equipement->type) == 'Autre' ? 'selected' : '' }}>Autre</option>
                             </select>
                         </div>
 
                     </div>
+                    
 
                         <!-- Coût -->
                         <div class="mb-4">
@@ -49,10 +55,34 @@
                         </div> <br>
 
                         <!-- État -->
-                        <div class="form-group">
+                        <div class="mb-4">
                             <label for="etat" class="block text-2xl font-medium text-black">État</label>
-                            <input type="text"  id="etat" name="etat" value="{{ old('etat', $equipement->etat) }}" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 form-control" required>
-                        </div> <br>
+
+                            <select
+                                name="etat"
+                                id="etat"
+                                class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                required
+                            >
+                                <option value="">-- Sélectionner l’état --</option>
+
+                                <option value="actif"
+                                    {{ old('etat', $equipement->etat) === 'actif' ? 'selected' : '' }}>
+                                    Actif
+                                </option>
+
+                                <option value="en panne"
+                                    {{ old('etat', $equipement->etat) === 'en panne' ? 'selected' : '' }}>
+                                    En panne
+                                </option>
+
+                                <option value="hors service"
+                                    {{ old('etat', $equipement->etat) === 'hors service' ? 'selected' : '' }}>
+                                    Hors service
+                                </option>
+                            </select>
+                        </div>
+
 
                         <!-- Date d'achat -->
                         <div class="form-group">

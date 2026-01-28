@@ -221,10 +221,10 @@
                                     <option value="Serveur">Serveur</option>
                                     <option value="Switch">Switch</option>
                                     <option value="Routeur">Routeur</option>
-                                    <option value="Ecran">Ecran</option>
+                                    <option value="Écran">Écran</option>
                                     <option value="Souris">Souris</option>
-                                    <option value="Telephone">Téléphone</option>
-                                    <option value="Television">Télévision</option>
+                                    <option value="Téléphone">Téléphone</option>
+                                    <option value="Télévision">Télévision</option>
                                     <option value="Rallonge">Rallonge</option>
                                     <option value="Adaptateur">Adaptateur</option>
                                     <option value="Autre">Autre</option>
@@ -304,7 +304,21 @@
 
                     <div>
                         <label class="block text-gray-700 font-medium">Type</label>
-                        <input type="text" name="type" id="editType" class="w-full border p-2 rounded-lg">
+
+                        <select name="type" id="editType" class="w-full border p-2 rounded-lg" required>
+                            <option value="">-- Sélectionner un type --</option>
+                            <option value="Ordinateur">Ordinateur</option>
+                            <option value="Imprimante">Imprimante</option>
+                            <option value="Routeur">Routeur</option>
+                            <option value="Switch">Switch</option>
+                            <option value="Serveur">Serveur</option>
+                            <option value="Écran">Écran</option>
+                            <option value="Téléphone">Téléphone</option>
+                            <option value="Télévision">Télévision</option>
+                            <option value="Rallonge">Rallonge</option>
+                            <option value="Adaptateur">Adaptateur</option>
+                            <option value="Autre">Autre</option>
+                        </select>
                     </div>
 
                     <div>
@@ -314,8 +328,15 @@
 
                     <div>
                         <label class="block text-gray-700 font-medium">État</label>
-                        <input type="text" name="etat" id="editEtat" class="w-full border p-2 rounded-lg">
+
+                        <select name="etat" id="editEtat" class="w-full border p-2 rounded-lg" required>
+                            <option value="">-- Sélectionner l’état --</option>
+                            <option value="actif">Actif</option>
+                            <option value="en panne">En panne</option>
+                            <option value="hors service">Hors service</option>
+                        </select>
                     </div>
+
 
                     <div>
                         <label class="block text-gray-700 font-medium">Date d'achat</label>
