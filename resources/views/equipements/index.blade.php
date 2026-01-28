@@ -205,6 +205,17 @@
                         <!-- Affichage des erreurs -->
                         <div id="addErrors" class="mb-4 hidden p-3 bg-red-100 border border-red-300 text-red-700 rounded"></div>
 
+                        @if ($errors->any())
+                            <div class="mb-4 p-3 bg-red-100 text-red-700 rounded">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>• {{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+
                         <form action="{{ route('equipements.store') }}" method="POST" enctype="multipart/form-data" id="addEquipementForm">
                             @csrf
 

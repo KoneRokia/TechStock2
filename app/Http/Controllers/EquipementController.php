@@ -37,7 +37,7 @@ class EquipementController extends Controller
         // Valider les données du formulaire
         $request->validate([
         'nom' => 'required|string|max:255',
-        'type' => 'required|string|in:Ordinateur,Imprimante,Serveur,Switch,Routeur,Autre',
+        'type' => 'required|string|in:Ordinateur,Imprimante,Serveur,Switch,Routeur,Écran,Téléphone,Télévision,Rallonge,Adaptateur,Autre',
         'cout' => 'required|string|max:255',
         'etat' => 'required|in:actif,en panne,hors service',
         'date_achat' => 'required|date',
@@ -127,9 +127,9 @@ public function update(Request $request, $id)
 {
     $request->validate([
         'nom' => 'required|string|max:255',
-        'type' => 'required|string|max:255',
+        'type' => 'required|string|in:Ordinateur,Imprimante,Serveur,Switch,Routeur,Écran,Téléphone,Télévision,Rallonge,Adaptateur,Autre',
         'cout' => 'required|string|max:255',
-        'etat' => 'required|string|max:255',
+        'etat' => 'required|in:actif,en panne,hors service',
         'date_achat' => 'required|date',
         'numero_serie' => 'required|string|max:255',
         'marque' => 'required|string|max:255',
