@@ -27,7 +27,7 @@ RUN composer install
 # Exécute npm run dev
 #RUN npm run build
 
-RUN php artisan cache:clear
+#RUN php artisan cache:clear
 #RUN php artisan route:cache
 RUN php artisan config:cache
 RUN php artisan view:clear
