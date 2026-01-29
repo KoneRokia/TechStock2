@@ -37,7 +37,7 @@
                             <option value="Serveur">Serveur</option>
                             <option value="Switch">Switch</option>
                             <option value="Routeur">Routeur</option>
-                            <option value="Ecran">Ecran</option>
+                            <option value="Écran">Écran</option>
                             <option value="Souris">Souris</option>
                             <option value="Telephone">Téléphone</option>
                             <option value="Television">Télévision</option>
